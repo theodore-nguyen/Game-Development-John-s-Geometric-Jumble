@@ -35,9 +35,10 @@ public class Engine extends Canvas implements Runnable {
 	public Engine(){
 		//	Engine.infoBox("Press J and K to shoot \nWASD to move \nShoot enemies to win \nDon't die \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD", "INSTRUCTIONS");
 		event = Event.Menu;
-		new Window(WIDTH, HEIGHT, "John's Geometric Jumble", this);
 		handler = new Handler();
 		menu = new Menu(this, handler);
+		new Window(WIDTH, HEIGHT, "John's Geometric Jumble", this);
+		
 
 		this.requestFocusInWindow();
 		this.addKeyListener( new KeyUser(handler) );

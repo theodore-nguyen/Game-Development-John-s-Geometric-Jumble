@@ -77,7 +77,6 @@ public class Kamikaze extends BadBullet{
 		g.setColor(Color.GRAY);
 		g.drawRect(x, y - 15, 60, 10);
 		
-		g.drawString("Health: " + this.getHealth(), x, y - 15);
 	}
 
 	public Rectangle getBounds() {

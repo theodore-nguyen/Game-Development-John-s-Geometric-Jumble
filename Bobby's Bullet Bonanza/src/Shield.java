@@ -23,11 +23,20 @@ public class Shield extends Ship{
 		
 	}
 	public void render(Graphics g) {
-		g.setColor(Color.LIGHT_GRAY);
-		g.fillRect(x, y, 60, 10);
+		g.setColor(Color.CYAN);
+		g.fillRect(x - 15 , y, 90, 10);
+		
+		g.setColor(Color.CYAN);
+		g.fillRect(x - 20 , y, 10, 80);
+		
+		g.setColor(Color.CYAN);
+		g.fillRect(x + 70 , y, 10, 85);
+		
+		g.setColor(Color.CYAN);
+		g.fillRect(x - 20 , y + 75, 90, 10);
 	}
 	public Rectangle getBounds() {
-		Rectangle rect = new Rectangle(x, y, 60, 10);
+		Rectangle rect = new Rectangle(x - 20 , y, 90, 90);
 		return rect;
 	}
 

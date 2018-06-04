@@ -34,7 +34,7 @@ public class Menu extends MouseAdapter{
 			if(inBounds(mouseX, mouseY, 350, 250, 300, 64 )) {
 				engine.event = Event.Game;	
 				handler.addObject(new FatAlbert( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.Albert));
-				handler.addObject(new Boss1(500, 20, 1000, ID.Enemy, handler));
+				handler.addObject(new Boss3(500, 20, 1000, ID.Enemy, handler));
 			}
 			//Help Button
 			if(inBounds(mouseX, mouseY, 350, 350, 300, 64 )) {
@@ -54,9 +54,12 @@ public class Menu extends MouseAdapter{
 		else if(engine.event == Event.Help) {
 			//BackButton
 			if(inBounds(mouseX, mouseY, 40, 30, 120, 64)) {
-				engine.event = Event.Menu;
 				handler.removeAll();
+				handler.removeAll();
+				engine.event = Event.Menu;
+				
 			}
+			
 		}
 
 	}
@@ -144,12 +147,14 @@ public class Menu extends MouseAdapter{
 			g.drawString("S", 156, 345);
 			g.drawRect(200, 310, 50, 50);
 			g.drawString("D", 217, 345);
+			g.drawString("Movement", 275, 345);
 			
 			//Shoot keys 
 			g.drawRect(110, 400, 50, 50);
 			g.drawString("J",128, 435);
 			g.drawRect(170, 400, 50, 50);
 			g.drawString("K",186, 435);
+			g.drawString("Shoot", 275, 435);
 			
 		}
 	}

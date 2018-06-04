@@ -80,7 +80,7 @@ public class KeyUser implements KeyListener{
 
 				if (e.getKeyCode() == KeyEvent.VK_J) h.addObject( new GoodBullet(temp.getX(), temp.getY() - 20, 5, ID.GoodBullet, h));
 				if (e.getKeyCode() == KeyEvent.VK_K) h.addObject(new GoodBullet(temp.getX() + 30, temp.getY() - 20, 5, ID.GoodBullet, h));		
-				if (e.getKeyCode() == KeyEvent.VK_Q) h.addObject(new Shield(0, 0, 5, ID.Shield, h));
+				if (e.getKeyCode() == KeyEvent.VK_SPACE) h.addObject(new Shield(0, 0, 5, ID.Shield, h));
 				
 					
 			}

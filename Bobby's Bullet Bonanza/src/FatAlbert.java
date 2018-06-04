@@ -12,7 +12,7 @@ public class FatAlbert extends Ship {
 		y += speedY * 2;
 		
 		x = restrict(x, 5, Engine.WIDTH - 50);
-		y = restrict(y, 5, Engine.HEIGHT - 75);
+		y = restrict(y, 250, Engine.HEIGHT - 100);
 	}
 	public void render(Graphics g) {
 		//box
