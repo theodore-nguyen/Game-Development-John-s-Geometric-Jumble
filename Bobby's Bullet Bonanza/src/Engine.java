@@ -23,9 +23,14 @@ public class Engine extends Canvas implements Runnable {
 
 	public static int timer;
 	public SpawnSystem elite;
+	public static boolean paused = false;
+	public static boolean reset = false;
+	public static int score;
+	public int highschore;
 	public Event event;
 	//ChangeEvent.Game (to skip the menu (easier debug))
 	public Menu menu;
+	
 
 	public static void infoBox(String infoMessage, String titleBar)
 	{
@@ -41,7 +46,7 @@ public class Engine extends Canvas implements Runnable {
 		
 
 		this.requestFocusInWindow();
-		this.addKeyListener( new KeyUser(handler) );
+		this.addKeyListener( new KeyUser(handler,this) );
 		this.addMouseListener(menu);
 
 		elite = new SpawnSystem(handler);
@@ -95,9 +100,12 @@ public class Engine extends Canvas implements Runnable {
 	private void tick(){
 
 		if (event == Event.Game) {
-			handler.tick();
+			if (!paused) {
+				score++;
+				handler.tick();
+			}
 		}
-		else if (event == Event.Menu || event == Event.Help) {
+		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection) {
 			menu.tick();
 			handler.tick();
 		}
@@ -110,15 +118,25 @@ public class Engine extends Canvas implements Runnable {
 			this.createBufferStrategy(3);
 			return;
 		}	
+		//PAUSE STUFF
+		int alpha = 190; // 50% transparent
+		Color pause = new Color(0, 0, 0, alpha);
+		Font title = new Font("Helvetica", 1, 60);
+		Font small = new Font("Helvetica", 1, 25);
 
 		Graphics g = bs.getDrawGraphics();
 		Font health = new Font("Magneto",Font.BOLD, 20);
 		Font norm = new Font("Times New Roman" , 1, 12);
+		
 		//BLACK CANVAS
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
 		if (event == Event.Game) {
+			//Score
+			g.setColor(Color.white);
+			g.drawString("Score: " + score, 100, 100);
+			
 			//STARS
 			g.setColor(Color.yellow);
 			int[] x1 = {15, 27, 20, 35, 50, 43, 55, 40, 35, 30, 20};
@@ -149,8 +167,8 @@ public class Engine extends Canvas implements Runnable {
 			int[] x6 = {985, 973, 980, 965, 950, 957, 945, 960, 965, 970, 980};
 			int[] y6 = {30 + 50, 42 + 50, 60 + 50, 50 + 50, 60 + 50, 42 + 50, 30 + 50, 30 + 50, 15 + 50, 30 + 50, 30 + 50};
 			g.fillPolygon(x6, y6, 11);
+			
 			//HEALTH CODE
-
 			g.setColor(Color.DARK_GRAY);
 			g.fillRect(10, HEIGHT - 60, 400, 30);
 			for(int i = 0; i < handler.actors.size(); i ++) {
@@ -168,13 +186,35 @@ public class Engine extends Canvas implements Runnable {
 			g.setColor(Color.gray);
 			g.drawRect(10, HEIGHT - 60, 400, 30);
 
-
 		} 
-		else if (event == Event.Menu || event == Event.Help) {
+		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection) {
 			menu.render(g);
 		}
 		//Actors
 		handler.render(g);
+		
+		// PAUSED
+		if (paused) {
+			//BLUR
+			g.setColor(pause);
+			g.fillRect(0, 0, WIDTH, HEIGHT);
+			//Pause Block
+			g.setColor(Color.white);
+			g.setFont(title);
+			g.drawRect(300, 100, 400, 500);
+			g.drawString("Paused", 395, 200);
+			
+			g.setFont(small);
+			g.drawRect(400, 300, 200, 64);
+			g.drawString("Resume", 450, 340);
+			
+			g.drawRect(400, 380, 200, 64);
+			g.drawString("Reset", 465, 420);
+			
+			g.drawRect(400, 460, 200, 64);
+			g.drawString("Menu", 465, 500);
+			
+		}
 
 		g.dispose();
 		bs.show();

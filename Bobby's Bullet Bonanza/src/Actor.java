@@ -14,7 +14,6 @@ public abstract class Actor {
 		this.id = id;
 	}
 	
-	
 	public void setX(int x) {
 		this.x = x;
 	}

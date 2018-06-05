@@ -8,13 +8,15 @@ public class KeyUser implements KeyListener{
 	private boolean a;
 	private boolean s;
 	private boolean d;
+	private Engine engine;
 
-	public KeyUser (Handler handler) {
+	public KeyUser (Handler handler, Engine engine) {
 		h = handler;
 		w = false;
 		a = false;
 		s = false;
 		d = false; 
+		this.engine = engine;
 
 	}
 
@@ -49,9 +51,7 @@ public class KeyUser implements KeyListener{
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
-		
-		Shield shield = new Shield(0, 0, 5, ID.Shield, h);
-		
+			
 		for(int i = 0; i < h.actors.size(); i ++) {
 			Actor temp = h.actors.get(i);
 			int key = e.getKeyCode();
@@ -80,7 +80,13 @@ public class KeyUser implements KeyListener{
 
 				if (e.getKeyCode() == KeyEvent.VK_J) h.addObject( new GoodBullet(temp.getX(), temp.getY() - 20, 5, ID.GoodBullet, h));
 				if (e.getKeyCode() == KeyEvent.VK_K) h.addObject(new GoodBullet(temp.getX() + 30, temp.getY() - 20, 5, ID.GoodBullet, h));		
-				if (e.getKeyCode() == KeyEvent.VK_SPACE) h.addObject(new Shield(0, 0, 5, ID.Shield, h));
+				if (e.getKeyCode() == KeyEvent.VK_SPACE) h.addObject(new Shield(temp.getX(), temp.getY(), 10, ID.Shield, h));
+				if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
+					if (engine.event == Event.Game) {
+						if (Engine.paused) Engine.paused = false;
+						else Engine.paused = true;	
+					}	
+				}
 				
 					
 			}
