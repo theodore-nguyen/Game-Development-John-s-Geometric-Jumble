@@ -51,16 +51,22 @@ public class Kamikaze extends BadBullet{
 						handler.removeObject(this);
 				}
 			}
-			if (this.getHealth() == 0){
-				handler.removeObject(this);
+		}
+		if (this.getHealth() <= 0){
+			handler.removeObject(this);
+
+			if ((int)(Math.random()  * 100) <= 100 ) 
+			{
+				handler.addObject(new MedKit(getX(), getY(), 5, ID.MedKit, handler));
 			}
 		}
 	}
+
 	public void render(Graphics g){
 
 		g.setColor(Color.green);
 		g.fillRect(x, y, 60, 60);
-		
+
 		g.setColor(Color.YELLOW);
 		g.drawRect(x, y, 60, 60);
 
@@ -72,14 +78,14 @@ public class Kamikaze extends BadBullet{
 
 		g.setColor(Color.BLACK);
 		g.fillRect(x + 15, y + 40, 40, 10);
-		
+
 		//HealthBar
 		g.setColor(Color.GREEN);
 		g.fillRect(x , y - 15 ,(this.getHealth()/5 * 6) , 10);
-		
+
 		g.setColor(Color.GRAY);
 		g.drawRect(x, y - 15, 60, 10);
-		
+
 	}
 
 	public Rectangle getBounds() {

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 public class SSMinnowJohnson extends Ship{
 	private int tim = 0;
+
 	public SSMinnowJohnson(int x, int y,int h, ID id) {
 		super(x, y, h, id);
 		// TODO Auto-generated constructor stub
@@ -25,6 +26,10 @@ public class SSMinnowJohnson extends Ship{
 	public int getTim() 
 	{
 		return tim;
+	}
+	public int getMax()
+	{
+		return 300;
 	}
 	public void render(Graphics g)
 	{	

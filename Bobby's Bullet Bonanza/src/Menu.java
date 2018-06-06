@@ -61,8 +61,25 @@ public class Menu extends MouseAdapter{
 			if(inBounds(mouseX, mouseY, 40, 30, 120, 64)) {
 				Engine.reset = true;
 				engine.event = Event.Menu;
-			}
 
+			}
+			if(inBounds(mouseX, mouseY, 830, 30, 120, 64))
+			{
+				Engine.reset = true;
+				engine.event = Event.Help2;
+			}
+		}
+		else if(engine.event == Event.Help2)
+		{
+			if(inBounds(mouseX, mouseY, 40, 30, 120, 64)) {
+				engine.event = Event.Help;
+				handler.addObject(new SSMinnowJohnson( Engine.WIDTH - 200 , Engine.HEIGHT - 200, 200, ID.John));
+				Enemy enemy = new Enemy(Engine.WIDTH - 200 , 200, 50, ID.Enemy, handler);
+				if(!handler.checkFor(enemy)) {
+					handler.addObject(enemy);
+				}
+
+			}
 		}
 		else if(engine.event == Event.CharacterSelection) {
 			//BackButton
@@ -73,13 +90,13 @@ public class Menu extends MouseAdapter{
 			//Fat Albert
 			if(inBounds(mouseX, mouseY, 135, 295, 70, 55)) {
 				engine.event = Event.Game;	
-				handler.addObject(new FatAlbert( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.Albert));
+				handler.addObject(new FatAlbert( Engine.WIDTH/2 , Engine.HEIGHT - 100, 400, ID.Albert));
 				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler));
 			}
 			//S.S. Minnow Johnson
 			if(inBounds(mouseX, mouseY, 450, 295, 70, 55)) {
 				engine.event = Event.Game;	
-				handler.addObject(new SSMinnowJohnson( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.John));
+				handler.addObject(new SSMinnowJohnson( Engine.WIDTH/2 , Engine.HEIGHT - 100, 300, ID.John));
 				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler));
 			}
 			//Speed Gonzales
@@ -124,7 +141,7 @@ public class Menu extends MouseAdapter{
 				System.exit(0);
 			}
 		}
-			
+
 	}
 
 	public void mouseReleased(MouseEvent e) {
@@ -168,6 +185,7 @@ public class Menu extends MouseAdapter{
 
 		col = new Color(red,blue,green);
 		Font font = new Font(null, 1, 42);
+		Font descrFont = new Font(null, 1, 16);
 		Font title = new Font("Magneto",Font.BOLD, 60);
 		Font instructions = new Font("Helvetica", 1, 60);
 		Font small = new Font("Helvetica", 1, 25);
@@ -193,6 +211,10 @@ public class Menu extends MouseAdapter{
 
 			//Back Button
 			g.drawString("Back", 50, 80);g.drawRect(40, 30, 120, 64);
+
+			//Help
+			g.drawRect(830, 30, 120, 64);
+			g.drawString("Next", 845, 80);
 
 			//Title
 			g.setColor(Color.white);g.setFont(instructions);g.drawString("Instructions", 50, 200);
@@ -313,6 +335,97 @@ public class Menu extends MouseAdapter{
 				g.drawImage(dead, x, 350, null);
 				g.drawImage(dead, x, 550, null);
 			}
+		}
+		if(engine.event == Event.Help2){
+			g.setColor(col);
+			g.setFont(font);
+			//Back Button
+			g.drawString("Back", 50, 80);
+			g.drawRect(40, 30, 120, 64);
+			g.setColor(Color.white);
+			g.setFont(font);
+			g.drawString("Instructions 2", 400, 80);
+			//enemy description
+			g.setColor(Color.red);
+			g.fillRect(40, 130, 60, 60);
+			g.setColor(Color.YELLOW);
+			g.drawRect(40, 130, 60, 60);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 10, 130 + 10, 15, 15);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 35, 130 + 10, 15, 15);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 15, 130 + 40, 40, 10);
+			g.setColor(Color.white);
+			g.setFont(descrFont);
+			g.drawString("The basic enemy. Its bullets deal 5 health.", 110, 155);
+			g.drawString("Each enemy has 50 health.", 110, 175);
+			//kamikaze description
+			g.setColor(Color.green);
+			g.fillRect(40, 220, 60, 60);
+			g.setColor(Color.YELLOW);
+			g.drawRect(40, 220, 60, 60);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 10, 220 + 10, 15, 15);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 35, 220 + 10, 15, 15);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 15, 220 + 40, 40, 10);
+			g.setColor(Color.white);
+			g.setFont(descrFont);
+			g.drawString("An advanced enemy. Homes on your position.", 110, 250);
+			g.drawString("The kamikaze has 50 health. It deals 20 health.", 110, 270);
+			//Boss1 description
+			g.setColor(Color.MAGENTA);
+			g.fillRect(40, 310 , 100, 100);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 17, 310 + 20, 15, 15);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 65, 310 + 20, 15, 15);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 15, 310 + 60, 60, 10);
+			g.setColor(Color.white);
+			g.setFont(descrFont);
+			g.drawString("A basic boss. Spawns enemies.", 150, 340);
+			g.drawString("Upon death, it spawns a Boss 2.", 150, 360);
+			g.drawString("It has 1000 health.", 150, 380); 
+			//Boss2 description
+			g.setColor(Color.ORANGE);
+			g.fillRect(40, 430, 100, 100);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 17, 430 + 20, 15, 15);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 65, 430 + 20, 15, 15);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 15, 430 + 60, 60, 10);
+			g.setColor(Color.white);
+			g.setFont(descrFont);
+			g.drawString("An advanced boss. It has 2000 health.", 150, 460);
+			g.drawString("Upon death, it spawns a Boss 3.", 150, 480);
+			g.drawString("It spawns enemies and kamikazes.", 150, 500); 
+			//Boss3 description
+			g.setColor(Color.YELLOW);
+			g.fillRect(40, 550, 100, 100);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 17, 550 + 20, 15, 15);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 65, 550 + 20, 15, 15);
+			g.setColor(Color.BLACK);
+			g.fillRect(40 + 15, 550 + 60, 60, 10);
+			g.setColor(Color.white);
+			g.setFont(descrFont);
+			g.drawString("An ultra-advanced boss. It has 3000 health.", 150, 580);
+			g.drawString("Upon death, it spawns 2 Boss 1.", 150, 600);
+			g.drawString("It spawns enemies and kamikazes and turrets.", 150, 620); 
+			//Turret description
+			g.setColor(Color.red);
+			g.fillRect(550, 130, 40, 60);
+			g.setColor(Color.YELLOW);
+			g.drawRect(550, 130, 40, 60);
+			g.setColor(Color.white);
+			g.setFont(descrFont);
+			g.drawString("A sentry positioned by Boss 3.", 600, 155);
+			g.drawString("Shoots from behind you and deals 5 health.", 600, 175);
 		}
 	}
 

@@ -24,6 +24,10 @@ public class SpeedyGonzales extends Ship{
 			tim = 0;
 		}
 	}
+	public int getMax()
+	{
+		return 200;
+	}
 	public int getTim() 
 	{
 		return tim;

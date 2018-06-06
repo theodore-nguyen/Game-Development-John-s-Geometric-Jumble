@@ -23,18 +23,18 @@ public class Enemy extends Ship{
 		move();
 		x = restrict(x, 5, Engine.WIDTH - 50);
 		y = restrict(y, 5, Engine.HEIGHT - 75);
-		
+		x += speedX;
+		y += speedY;
+
+
 		if (this.getHealth() == 0){
 			handler.removeObject(this);
 		}
-		
-		x += speedX;
-		y += speedY;
 	}
 	public void render(Graphics g) {
 		g.setColor(Color.red);
 		g.fillRect(x, y, 60, 60);
-		
+
 		g.setColor(Color.YELLOW);
 		g.drawRect(x, y, 60, 60);
 
@@ -46,15 +46,15 @@ public class Enemy extends Ship{
 
 		g.setColor(Color.BLACK);
 		g.fillRect(x + 15, y + 40, 40, 10);
-		
-		
+
+
 		//HealthBar
 		g.setColor(Color.GREEN);
 		g.fillRect(x , y - 15 ,(this.getHealth()/5 * 6) , 10);
-		
+
 		g.setColor(Color.GRAY);
 		g.drawRect(x, y - 15, 60, 10);
-		
+
 	}
 	public Rectangle getBounds() {
 		Rectangle rect = new Rectangle(x, y, 60, 60);
@@ -70,15 +70,15 @@ public class Enemy extends Ship{
 		}
 	}
 	public void move()
-		{
-			if(timer2 == 50){
-				double k = Math.random();
-				if(k < 0.5) this.setSpeedX(-2);
-				else this.setSpeedX(2);
-				timer2 = 0;
-			}	
-		}
+	{
+		if(timer2 == 50){
+			double k = Math.random();
+			if(k < 0.5) this.setSpeedX(-2);
+			else this.setSpeedX(2);
+			timer2 = 0;
+		}	
 	}
+}
 
 
 

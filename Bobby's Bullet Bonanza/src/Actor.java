@@ -5,6 +5,7 @@ public abstract class Actor {
 	
 	protected int x, y, speedX, speedY;
 	protected ID id;
+
 	public int health;
 	
 	public Actor(int x, int y, int h, ID id) {
@@ -60,5 +61,6 @@ public abstract class Actor {
 	public abstract boolean canShield();
 	public abstract void setShield(int CD);
 	public abstract int getTim ();
+	public abstract int getMax();
 
 }

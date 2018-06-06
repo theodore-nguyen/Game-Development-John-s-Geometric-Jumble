@@ -7,6 +7,7 @@ public class FatAlbert extends Ship {
 	private int health;
 	private int uptime = 1;
 	private int regen;
+
 	public FatAlbert(int x, int y, int h, ID id) {
 		super(x, y, h, id);
 		this.health = h;
@@ -42,7 +43,10 @@ public class FatAlbert extends Ship {
 	{
 		return tim;
 	}
-	
+	public int getMax()
+	{
+		return 400;
+	}
 	public void render(Graphics g) {
 		//booster left
 		g.setColor(Color.green);

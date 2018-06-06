@@ -111,7 +111,7 @@ public class Engine extends Canvas implements Runnable {
 				event = Event.Death;
 			}
 		}
-		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death) {
+		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death || event == Event.Help2 ) {
 			menu.tick();
 			handler.tick();
 		}
@@ -162,11 +162,28 @@ public class Engine extends Canvas implements Runnable {
 			for(int i = 0; i < handler.actors.size(); i ++) {
 				Actor temp = handler.actors.get(i);
 				if (temp.id == ID.John || temp.id == ID.Albert || temp.id == ID.Gon){
-					g.setColor(Color.green);
-					g.fillRect(10, HEIGHT - 60, temp.getHealth() * 2, 30);
-					g.setFont(health);
-					g.setColor(Color.LIGHT_GRAY);
-					g.drawString("Health: " + temp.getHealth(), 10, HEIGHT - 60);
+					
+					if(temp.id == ID.Gon){
+						g.setColor(Color.green);
+						g.fillRect(10, HEIGHT - 60, temp.getHealth() * 2, 30);
+						g.setFont(health);
+						g.setColor(Color.LIGHT_GRAY);
+						g.drawString("Health: " + temp.getHealth(), 10, HEIGHT - 60);
+					}
+					if(temp.id == ID.John){
+						g.setColor(Color.green);
+						g.fillRect(10, HEIGHT - 60, temp.getHealth()/3 * 4, 30);
+						g.setFont(health);
+						g.setColor(Color.LIGHT_GRAY);
+						g.drawString("Health: " + temp.getHealth(), 10, HEIGHT - 60);
+					}
+					if(temp.id == ID.Albert){
+						g.setColor(Color.green);
+						g.fillRect(10, HEIGHT - 60, temp.getHealth(), 30);
+						g.setFont(health);
+						g.setColor(Color.LIGHT_GRAY);
+						g.drawString("Health: " + temp.getHealth(), 10, HEIGHT - 60);
+					}
 					g.setFont(norm);
 					if(!temp.canShield()) 
 					{
@@ -182,7 +199,7 @@ public class Engine extends Canvas implements Runnable {
 			handler.render(g);
 
 		} 
-		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death) {
+		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death || event == Event.Help2) {
 			menu.render(g);
 		}
 		//Actors

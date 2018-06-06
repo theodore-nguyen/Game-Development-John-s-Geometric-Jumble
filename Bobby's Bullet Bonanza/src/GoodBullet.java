@@ -22,7 +22,7 @@ public class GoodBullet extends Ship{
 			if(temp.id == ID.BadBullet || temp.id == ID.Boss || temp.id == ID.Enemy) {
 				if (getBounds().intersects(temp.getBounds())) {
 					handler.removeObject(this);
-					temp.setHealth(temp.getHealth() - 5);
+					temp.setHealth(temp.getHealth() - 7);
 				}
 			}
 		}

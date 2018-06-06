@@ -16,12 +16,12 @@ public class BigBullet extends GoodBullet{
 			Actor temp = handler.actors.get(i);
 
 			if (getBounds().intersects(temp.getBounds())) {
-				if (temp.id == ID.BadBullet) {
-					// Do nothin
-				}
+	
 				if (temp.id == ID.Enemy) {
-					this.setHealth(this.getHealth() - temp.getHealth());
-					handler.removeObject(temp);
+					int dmg = (this.getHealth() - temp.getHealth());
+					temp.setHealth(temp.getHealth() - this.getHealth());
+					this.setHealth(dmg);
+				
 				}
 				if (temp.id == ID.Boss) {
 					temp.setHealth(temp.getHealth() - this.getHealth());

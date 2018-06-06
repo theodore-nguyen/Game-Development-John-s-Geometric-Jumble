@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 public class Ship extends Actor {
 	private boolean ShieldCD = true;
 	private int tim = 0;
+	protected int maxHealth;
 	public Ship(int x, int y, int h, ID id) {
 		super(x, y, h, id);
 	}
@@ -44,6 +45,10 @@ public class Ship extends Actor {
 	public int getTim() 
 	{
 		return tim;
+	}
+	public int getMax()
+	{
+		return 0;
 	}
 
 	//Default Ship size

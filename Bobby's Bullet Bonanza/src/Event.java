@@ -6,4 +6,5 @@ public enum Event {
 	Help,
 	Game,
 	Death,
+	Help2,
 }

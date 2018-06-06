@@ -74,12 +74,6 @@ import java.awt.Rectangle;
 				}
 				x += speedX;
 				y += speedY;
-				if(this.getHealth() <= 0) 
-				{
-					handler.addObject(new Boss1(450, 20, 1000, ID.Boss, handler));
-					handler.addObject(new Boss1(550, 20, 1000, ID.Boss, handler));
-
-				}
 
 			}
 
