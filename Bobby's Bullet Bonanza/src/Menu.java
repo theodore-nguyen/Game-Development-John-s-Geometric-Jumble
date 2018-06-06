@@ -19,6 +19,7 @@ public class Menu extends MouseAdapter{
 	private Handler handler;
 	private BufferedImage menubackground = null;
 	private BufferedImage background = null;
+	private BufferedImage dead = null;
 	//https://www.zerochan.net/1915298
 
 	public Menu(Engine engine, Handler handler) {
@@ -27,6 +28,7 @@ public class Menu extends MouseAdapter{
 		BufferedImageLoader loader = new BufferedImageLoader();
 		menubackground = loader.loadImage("/background2.jpg");
 		background = loader.loadImage("/backgroundsp.jpg");
+		dead = loader.loadImage("/gameover.png");
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -89,23 +91,40 @@ public class Menu extends MouseAdapter{
 		}
 
 		else if (Engine.paused){
+			//Resume
 			if (inBounds(mouseX, mouseY, 400, 300, 200, 64)) {
 				Engine.paused = false;
 			}
+			//Restart
 			if (inBounds(mouseX, mouseY, 400, 380, 200, 64)) {
 				Engine.reset = true;
 				Engine.paused = false;
 				engine.event = Event.CharacterSelection;
-
-				handler.addObject(new FatAlbert( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.Albert));
-				handler.addObject(new Boss3(500, 20, 1000, ID.Enemy, handler));
+			}
+			//Menu
+			if (inBounds(mouseX, mouseY, 400, 460, 200, 64)) {
+				Engine.reset = true;
+				Engine.paused = false;
+				engine.event = Event.Menu;
+			}	
+		}
+		else if (engine.event == Event.Death) {
+			//Try Again
+			if (inBounds(mouseX, mouseY, 400, 300, 200, 64)) {
+				Engine.reset = true;
+				engine.event = Event.CharacterSelection;
+			}
+			//Menu
+			if (inBounds(mouseX, mouseY, 400, 380, 200, 64)) {
+				Engine.reset = true;
+				engine.event = Event.Menu;
+			}
+			//Quit
+			if (inBounds(mouseX, mouseY, 400, 460, 200, 64)) {
+				System.exit(0);
 			}
 		}
-		if (inBounds(mouseX, mouseY, 400, 460, 200, 64)) {
-			Engine.reset = true;
-			Engine.paused = false;
-			engine.event = Event.Menu;
-		}
+			
 	}
 
 	public void mouseReleased(MouseEvent e) {
@@ -157,7 +176,7 @@ public class Menu extends MouseAdapter{
 			g.drawImage(menubackground, 0, 0, null);
 			//Title
 			g.setColor(col);g.setFont(title);g.drawString("John's Gemometric Jumble", 60, 150);
-			
+
 			g.setFont(font);
 			//Start Box
 			g.drawRect(350, 250, 300, 64);g.drawString("Start", 450, 300);
@@ -190,22 +209,22 @@ public class Menu extends MouseAdapter{
 			g.drawRect(110, 400, 50, 50);g.drawString("J",128, 435);
 			g.drawRect(170, 400, 50, 50);g.drawString("K",186, 435);
 			g.drawString("Shoot", 275, 435);
-			
+
 			//Spacebar
 			g.drawRect(50, 480, 300, 50);
 			g.drawString("Spacebar", 140, 515);
 			g.drawString("Shield", 360, 515);
-			
+
 			//ability
 			g.drawRect(50, 560, 50, 50);
 			g.drawString("Q", 65, 595);
 			g.drawString("Special Ability", 115, 595);
-			
+
 			//Escape
 			g.drawRect(50, 640, 50, 50);
 			g.drawString("Esc", 53, 675);
 			g.drawString("Go back", 115, 675);
-	
+
 		}
 		if (engine.event == Event.CharacterSelection) {
 
@@ -214,10 +233,10 @@ public class Menu extends MouseAdapter{
 			//Back Button
 			g.drawString("Back", 50, 80);
 			g.drawRect(40, 30, 120, 64);
-			
+
 			g.setFont(title);
 			g.drawString("Character Selection", 157, 180);
-			
+
 			g.setFont(small);
 			//FAT ALBERT 
 			g.setColor(Color.green);g.drawString("Fat Albert", 120, 250);
@@ -228,7 +247,7 @@ public class Menu extends MouseAdapter{
 			g.setColor(Color.green);g.fillRect(150 + 10, 300 + 10, 20, 20);
 			g.setColor(Color.green);g.fillRect(150, 300 - 5, 10, 5);
 			g.setColor(Color.green);g.fillRect(150 + 30,  300 - 5, 10, 5);
-			
+
 			g.drawString("Fat Albert is fat", 80, 380);
 			g.drawString("Honestly a mammoth", 50, 405);
 			g.drawString("If you pick him", 85, 430);
@@ -249,7 +268,7 @@ public class Menu extends MouseAdapter{
 			g.setColor(Color.MAGENTA);g.fillRect(465 + 10, 300 + 10, 20, 20);
 			g.setColor(Color.MAGENTA);g.fillRect(465, 300 - 5, 10, 5);
 			g.setColor(Color.MAGENTA);g.fillRect(465 + 30,  300 - 5, 10, 5);
-			
+
 			g.drawString("Johnson is a normie", 360, 380);
 			g.drawString("Just an everyday Joe", 353, 405);
 			g.drawString("If you pick him", 390, 430);
@@ -261,7 +280,7 @@ public class Menu extends MouseAdapter{
 			g.drawString("Normal speed", 400, 580);
 			g.drawString("Normal health", 400, 605);
 			//BOUNDARIES -- g.drawRect(450, 295, 70, 55);
-			
+
 			//SPEEDY GONZALES
 			g.setColor(Color.CYAN);g.drawString("Speedy", 775, 250);g.drawString("Gonzales", 765, 280);
 			//PIC OF Speedy Gonzales
@@ -271,7 +290,7 @@ public class Menu extends MouseAdapter{
 			g.setColor(Color.CYAN);g.fillRect(800 + 10, 300 + 10, 20, 20);
 			g.setColor(Color.CYAN);g.fillRect(800, 300 - 5, 10, 5);
 			g.setColor(Color.CYAN);g.fillRect(800 + 30,  300 - 5, 10, 5);
-			
+
 			g.drawString("Gonzales is a Ferrari", 700, 380);
 			g.drawString("Representing Mexico", 700, 405);
 			g.drawString("If you pick him", 735, 430);
@@ -283,7 +302,17 @@ public class Menu extends MouseAdapter{
 			g.drawString("You'll experience", 720, 580);
 			g.drawString("-Decreased health", 710, 605);
 			//BOUNDARIES -- g.drawRect(785, 295, 70, 55);
-			
+		}
+		if(engine.event == Event.Death) {
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, Engine.WIDTH, Engine.HEIGHT);
+			for(int i = 0; i < 4; i ++) {
+				int x = i * 256;
+				g.drawImage(dead, x, -50, null);
+				g.drawImage(dead, x, 150, null);
+				g.drawImage(dead, x, 350, null);
+				g.drawImage(dead, x, 550, null);
+			}
 		}
 	}
 

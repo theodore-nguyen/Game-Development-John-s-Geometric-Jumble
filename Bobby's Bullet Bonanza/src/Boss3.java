@@ -81,12 +81,6 @@ import java.awt.Rectangle;
 
 				}
 
-
-
-
-
-
-
 			}
 
 		}

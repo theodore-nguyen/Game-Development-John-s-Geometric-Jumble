@@ -5,6 +5,5 @@ public enum Event {
 	CharacterSelection,
 	Help,
 	Game,
-	
-
+	Death,
 }

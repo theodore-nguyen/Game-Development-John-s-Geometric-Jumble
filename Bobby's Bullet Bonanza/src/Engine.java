@@ -38,8 +38,8 @@ public class Engine extends Canvas implements Runnable {
 	private FatAlbert albert = new FatAlbert(0,0,0, ID.Albert);
 	private SSMinnowJohnson john = new SSMinnowJohnson(0,0,0, ID.John);
 	private SpeedyGonzales gon = new SpeedyGonzales(0,0,0, ID.Gon);
-	
-	
+
+
 
 	public static void infoBox(String infoMessage, String titleBar)
 	{
@@ -47,21 +47,18 @@ public class Engine extends Canvas implements Runnable {
 	}
 
 	public Engine(){
-		//	Engine.infoBox("Press J and K to shoot \nWASD to move \nShoot enemies to win \nDon't die \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD \nGIT GUD", "INSTRUCTIONS");
+		Engine.infoBox("Make Sure to \nCheck the Guide \n\nSincerly Your Captain, \n\nJohn ", "Message From John");
 		event = Event.Menu;
 		handler = new Handler();
 		menu = new Menu(this, handler);
 		new Window(WIDTH, HEIGHT, "John's Geometric Jumble", this);
 		BufferedImageLoader loader = new BufferedImageLoader();
 		background = loader.loadImage("/stars.jpeg");
-		
+
 		this.requestFocusInWindow();
 		this.addKeyListener( new KeyUser(handler,this) );
 		this.addMouseListener(menu);
-
-
 	}
-
 	public synchronized void start(){ 
 		thread = new Thread(this);
 		thread.start();
@@ -109,8 +106,11 @@ public class Engine extends Canvas implements Runnable {
 					handler.tick();
 				}
 			}
+			else {
+				event = Event.Death;
+			}
 		}
-		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection) {
+		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death) {
 			menu.tick();
 			handler.tick();
 		}
@@ -132,7 +132,7 @@ public class Engine extends Canvas implements Runnable {
 		Graphics g = bs.getDrawGraphics();
 		Font health = new Font("Magneto",Font.BOLD, 20);
 		Font norm = new Font("Times New Roman" , 1, 12);
-		
+
 		//BLACK CANVAS
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
@@ -141,7 +141,7 @@ public class Engine extends Canvas implements Runnable {
 			//Score
 			g.setColor(Color.white);
 			g.drawString("Score: " + score, 100, 100);
-			
+
 			//icon for shield		
 			g.setColor(Color.WHITE);
 			g.fillRect(916, 640, 66, 66);
@@ -175,17 +175,18 @@ public class Engine extends Canvas implements Runnable {
 				}
 
 			}
-			
+
 			g.setColor(Color.gray);
 			g.drawRect(10, HEIGHT - 60, 400, 30);
+			handler.render(g);
 
 		} 
-		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection) {
+		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death) {
 			menu.render(g);
 		}
 		//Actors
 		handler.render(g);
-		
+
 		// PAUSED
 		if (paused) {
 			//BLUR
@@ -196,24 +197,45 @@ public class Engine extends Canvas implements Runnable {
 			g.setFont(title);
 			g.drawRect(300, 100, 400, 500);
 			g.drawString("Paused", 395, 200);
-			
+
 			g.setFont(small);
 			g.drawRect(400, 300, 200, 64);
 			g.drawString("Resume", 450, 340);
-			
+
 			g.drawRect(400, 380, 200, 64);
 			g.drawString("Reset", 465, 420);
-			
+
 			g.drawRect(400, 460, 200, 64);
 			g.drawString("Menu", 465, 500);
-			
 		}
+		if(event == Event.Death) {
+			g.setColor(Color.white);
+			for(int i = 0; i < 20; i ++) {
+				g.drawString("git gud", (int)(Math.random() * 1000), (int) (Math.random() * 700));
+			}
+			g.setColor(pause);
+			g.fillRect(0, 0, WIDTH, HEIGHT);
+			g.setColor(Color.WHITE);
+			g.setFont(title);
+			g.drawRect(200, 100, 600, 500);
+			g.setColor(Color.RED); g.drawString("YOU HAVE DIED!", 255, 200);
 
+			g.setColor(Color.white);
+			g.setFont(small);
+			g.drawRect(400, 300, 200, 64);
+			g.drawString("Try Again", 442, 340);
+
+			g.drawRect(400, 380, 200, 64);
+			g.drawString("Menu", 465, 420);
+
+			g.drawRect(400, 460, 200, 64);
+			g.drawString("Quit", 470, 500);
+			g.setFont(new Font(null, 1, 10));
+			g.drawString("Don't be a wuss", 455, 520);
+		}
 		g.dispose();
 		bs.show();
 	}
-
-
 	public static void main(String[] args) {
 		new Engine();
 	}

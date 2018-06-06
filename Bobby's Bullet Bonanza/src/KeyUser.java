@@ -90,14 +90,10 @@ public class KeyUser implements KeyListener{
 					if (temp.id == ID.Gon) h.addObject(new GoodBullet(temp.getX() + 30, temp.getY() - 20, 5, ID.GoodBullet, h, Color.CYAN));
 				}
 				if (e.getKeyCode() == KeyEvent.VK_Q) {
+					
 					if (temp.id == ID.John) h.addObject(new BigBullet(temp.getX(), temp.getY(), 300, ID.GoodBullet, h, null));
-	
 					if (temp.id == ID.Albert) FatAlbert.ability = true;
-	
-					if (temp.id == ID.Gon) {
-						SpeedyGonzales.ability = true;
-					}
-
+					if (temp.id == ID.Gon) SpeedyGonzales.ability = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) 
 					if(temp.canShield())
