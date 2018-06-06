@@ -16,12 +16,13 @@ public class BigBullet extends GoodBullet{
 			Actor temp = handler.actors.get(i);
 
 			if (getBounds().intersects(temp.getBounds())) {
-	
+				if (temp.id == ID.BadBullet) {
+					// Do nothin
+				}
 				if (temp.id == ID.Enemy) {
 					int dmg = (this.getHealth() - temp.getHealth());
 					temp.setHealth(temp.getHealth() - this.getHealth());
-					this.setHealth(dmg);
-				
+					this.setHealth(this.getHealth() - temp.getHealth());
 				}
 				if (temp.id == ID.Boss) {
 					temp.setHealth(temp.getHealth() - this.getHealth());
@@ -36,6 +37,9 @@ public class BigBullet extends GoodBullet{
 	public void render(Graphics g) {
 		g.setColor(Color.pink);
 		g.fillRoundRect(x, y, 100, 100, 100, 100);
+		
+		g.setColor(Color.BLACK);
+		g.drawRoundRect(x, y, 100, 100, 100, 100);
 
 	}
 	public Rectangle getBounds() {

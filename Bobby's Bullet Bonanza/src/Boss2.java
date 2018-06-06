@@ -73,9 +73,9 @@ public class Boss2 extends Boss1 {
 				Enemy f = new Enemy( (int)(Math.random() * 900), (int) (Math.random() * 250) + 30, 50, ID.Enemy, handler);
 				handler.addObject(f);
 			}
-			handler.addObject(new Kamikaze( (int)(Math.random() * 900), (int) (Math.random() * 300) + 30, 50, ID.Enemy, handler, 1));
-			handler.addObject(new Kamikaze( (int)(Math.random() * 900), (int) (Math.random() * 300) + 30, 50, ID.Enemy, handler, 1));
-			handler.addObject(new Kamikaze( (int)(Math.random() * 900), (int) (Math.random() * 300) + 30, 50, ID.Enemy, handler, 1));
+			handler.addObject(new Kamikaze( (int)(Math.random() * 900), (int) (Math.random() * 300) + 100, 50, ID.Enemy, handler, 1));
+			handler.addObject(new Kamikaze( (int)(Math.random() * 900), (int) (Math.random() * 300) + 100, 50, ID.Enemy, handler, 1));
+			handler.addObject(new Kamikaze( (int)(Math.random() * 900), (int) (Math.random() * 300) + 100, 50, ID.Enemy, handler, 1));
 			handler.addObject(new Kamikaze( 100, (int) (Math.random() * 300) + 340, 50, ID.Enemy, handler, 1));
 			handler.addObject(new Kamikaze( 800, (int) (Math.random() * 300) + 340, 50, ID.Enemy, handler, 1));
 

@@ -20,7 +20,6 @@ public class Menu extends MouseAdapter{
 	private BufferedImage menubackground = null;
 	private BufferedImage background = null;
 	private BufferedImage dead = null;
-	//https://www.zerochan.net/1915298
 
 	public Menu(Engine engine, Handler handler) {
 		this.engine = engine;
@@ -378,6 +377,8 @@ public class Menu extends MouseAdapter{
 			//Boss1 description
 			g.setColor(Color.MAGENTA);
 			g.fillRect(40, 310 , 100, 100);
+			g.setColor(Color.RED);
+			g.drawRect(40, 310, 100, 100);
 			g.setColor(Color.BLACK);
 			g.fillRect(40 + 17, 310 + 20, 15, 15);
 			g.setColor(Color.BLACK);
@@ -392,6 +393,8 @@ public class Menu extends MouseAdapter{
 			//Boss2 description
 			g.setColor(Color.ORANGE);
 			g.fillRect(40, 430, 100, 100);
+			g.setColor(Color.RED);
+			g.drawRect(40, 430, 100, 100);
 			g.setColor(Color.BLACK);
 			g.fillRect(40 + 17, 430 + 20, 15, 15);
 			g.setColor(Color.BLACK);
@@ -406,6 +409,8 @@ public class Menu extends MouseAdapter{
 			//Boss3 description
 			g.setColor(Color.YELLOW);
 			g.fillRect(40, 550, 100, 100);
+			g.setColor(Color.RED);
+			g.drawRect(40, 550, 100, 100);
 			g.setColor(Color.BLACK);
 			g.fillRect(40 + 17, 550 + 20, 15, 15);
 			g.setColor(Color.BLACK);
@@ -418,10 +423,26 @@ public class Menu extends MouseAdapter{
 			g.drawString("Upon death, it spawns 2 Boss 1.", 150, 600);
 			g.drawString("It spawns enemies and kamikazes and turrets.", 150, 620); 
 			//Turret description
+			
 			g.setColor(Color.red);
 			g.fillRect(550, 130, 40, 60);
+			
 			g.setColor(Color.YELLOW);
 			g.drawRect(550, 130, 40, 60);
+			
+			g.setColor(Color.GRAY);
+			g.fillRect(562, 115, 17, 35);
+			
+			g.setColor(Color.BLACK);
+			g.drawRect(562, 115, 17, 35);
+			
+			g.setColor(Color.GRAY);
+			g.fillRoundRect(557, 143, 27, 27, 27, 27);
+			
+			g.setColor(Color.BLACK);
+			g.drawRoundRect(557, 143, 27, 27, 27, 27);
+			
+			
 			g.setColor(Color.white);
 			g.setFont(descrFont);
 			g.drawString("A sentry positioned by Boss 3.", 600, 155);

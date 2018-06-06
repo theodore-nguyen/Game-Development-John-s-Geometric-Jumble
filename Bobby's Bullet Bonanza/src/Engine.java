@@ -48,7 +48,8 @@ public class Engine extends Canvas implements Runnable {
 	}
 
 	public Engine(){
-		Engine.infoBox("Make Sure to \nCheck the Guide \n\nSincerly Your Captain, \n\nJohn ", "Message From John");
+		Engine.infoBox("Incoming transmission from Captain John \n \n We are under attack from the Jeobots! \n Please help us Albert, Johnson, and Gozales! \n\n 		~ Captain John ", "Message From John");
+		//("Make Sure to \nCheck the Guide \n\nSincerly Your Captain, \n\nJohn ", "Message From John");
 		event = Event.Menu;
 		handler = new Handler();
 		menu = new Menu(this, handler);
@@ -144,16 +145,23 @@ public class Engine extends Canvas implements Runnable {
 			g.drawString("Score: " + score, 100, 100);
 
 			//icon for shield		
+			
+			
 			g.setColor(Color.WHITE);
 			g.fillRect(916, 640, 66, 66);
 			g.setColor(Color.CYAN);
-			g.fillRect(927, 650, 44, 7);
-			g.setColor(Color.CYAN);
-			g.fillRect(927, 650, 7, 43);
-			g.setColor(Color.CYAN);
-			g.fillRect(927, 688, 44, 7);
-			g.setColor(Color.CYAN);
-			g.fillRect(965,650, 7, 45);
+			g.fillRoundRect(921, 645, 55, 55, 55, 55);
+			g.setColor(Color.WHITE);
+			g.fillRoundRect(927, 650, 44, 44, 44, 44);
+			
+			
+			//g.fillRect(927, 650, 44, 7);
+			//g.setColor(Color.CYAN);
+			//g.fillRect(927, 650, 7, 43);
+			//g.setColor(Color.CYAN);
+			//g.fillRect(927, 688, 44, 7);
+			//g.setColor(Color.CYAN);
+			//g.fillRect(965,650, 7, 45);
 
 
 			//health bar

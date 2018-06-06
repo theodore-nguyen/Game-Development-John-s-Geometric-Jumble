@@ -35,6 +35,20 @@ public class Turret extends Enemy
 		
 		g.setColor(Color.YELLOW);
 		g.drawRect(x, y, 40, 60);
+		
+		g.setColor(Color.GRAY);
+		g.fillRect(x + 12, y - 15, 17, 35);
+		
+		g.setColor(Color.BLACK);
+		g.drawRect(x + 12, y - 15, 17, 35);
+		
+		g.setColor(Color.GRAY);
+		g.fillRoundRect(x + 7, y + 13, 27, 27, 27, 27);
+		
+		g.setColor(Color.BLACK);
+		g.drawRoundRect(x + 7, y + 13, 27, 27, 27, 27);
+		
+		
 
 	}
 	public Rectangle getBounds() {

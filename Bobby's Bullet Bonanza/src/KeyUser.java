@@ -91,7 +91,7 @@ public class KeyUser implements KeyListener{
 				}
 				if (e.getKeyCode() == KeyEvent.VK_Q) {
 					
-					if (temp.id == ID.John) h.addObject(new BigBullet(temp.getX(), temp.getY(), 300, ID.GoodBullet, h, null));
+					if (temp.id == ID.John) h.addObject(new BigBullet(temp.getX() - 28, temp.getY() - 100, 300, ID.GoodBullet, h, null));
 					if (temp.id == ID.Albert) FatAlbert.ability = true;
 					if (temp.id == ID.Gon) SpeedyGonzales.ability = true;
 				}

@@ -26,7 +26,6 @@ public class Enemy extends Ship{
 		x += speedX;
 		y += speedY;
 
-
 		if (this.getHealth() == 0){
 			handler.removeObject(this);
 		}
