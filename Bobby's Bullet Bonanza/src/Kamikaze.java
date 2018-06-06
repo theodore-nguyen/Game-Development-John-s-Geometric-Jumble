@@ -14,7 +14,8 @@ public class Kamikaze extends BadBullet{
 	}
 
 	public void tick(){
-		for(int i = 0; i < handler.actors.size(); i ++) {
+		for(int i = 0; i < handler.actors.size(); i ++) 
+		{
 			Actor temp = handler.actors.get(i);
 			//Homing towards Player
 			if (temp.id == ID.John || temp.id == ID.Albert || temp.id == ID.Gon)
@@ -50,19 +51,18 @@ public class Kamikaze extends BadBullet{
 						handler.removeObject(this);
 				}
 			}
-
-		}
-		if (this.getHealth() == 0){
-			handler.removeObject(this);
-			Engine.score += 1200;
+			if (this.getHealth() == 0){
+				handler.removeObject(this);
+			}
 		}
 	}
-
-
 	public void render(Graphics g){
 
 		g.setColor(Color.green);
 		g.fillRect(x, y, 60, 60);
+		
+		g.setColor(Color.YELLOW);
+		g.drawRect(x, y, 60, 60);
 
 		g.setColor(Color.BLACK);
 		g.fillRect(x + 10, y + 10, 15, 15);
@@ -72,14 +72,14 @@ public class Kamikaze extends BadBullet{
 
 		g.setColor(Color.BLACK);
 		g.fillRect(x + 15, y + 40, 40, 10);
-
+		
 		//HealthBar
 		g.setColor(Color.GREEN);
 		g.fillRect(x , y - 15 ,(this.getHealth()/5 * 6) , 10);
-
+		
 		g.setColor(Color.GRAY);
 		g.drawRect(x, y - 15, 60, 10);
-
+		
 	}
 
 	public Rectangle getBounds() {

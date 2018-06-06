@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 
 public class SpeedyGonzales extends Ship{
-
+	private int tim = 0;
 	public SpeedyGonzales(int x, int y,int h, ID id) {
 		super(x, y, h, id);
 		// TODO Auto-generated constructor stub
@@ -12,9 +12,20 @@ public class SpeedyGonzales extends Ship{
 	public void tick() {
 		x += speedX * 4;
 		y += speedY * 4;
-
+		
 		x = restrict(x, 5, Engine.WIDTH - 50);
 		y = restrict(y, 250, Engine.HEIGHT - 100);
+		
+		tim ++ ;
+		if(tim == 200) 
+		{
+			this.setShield(1);
+			tim = 0;
+		}
+	}
+	public int getTim() 
+	{
+		return tim;
 	}
 	public void render(Graphics g)
 	{	

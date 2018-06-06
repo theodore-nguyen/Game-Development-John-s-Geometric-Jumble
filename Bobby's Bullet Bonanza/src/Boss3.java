@@ -1,7 +1,7 @@
 
 	import java.awt.Color;
-	import java.awt.Graphics;
-	import java.awt.Rectangle;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 	public class Boss3 extends Boss1 {
 
 			public Boss3(int x, int y, int h, ID id, Handler handler) {
@@ -30,10 +30,13 @@
 				
 				
 				g.setColor(Color.GREEN);
-				g.fillRect(0 , 0 ,(this.getHealth()) , 10);
+				g.fillRect(0 , 0 ,(this.getHealth()) / 5, 10);
 				
 				g.setColor(Color.GRAY);
 				g.drawRect(0 , 0 , 1000, 10);
+				
+				g.setColor(Color.RED);
+				g.drawRect(x , y , 100, 100);
 
 			}
 
@@ -55,6 +58,35 @@
 					handler.addObject(k);
 					timer = 0;
 				}
+			}
+			public void tick() 
+			{
+				x = restrict(x, 5, Engine.WIDTH - 100);
+				y = restrict(y, 5, Engine.HEIGHT - 75);
+				shoot();
+				timer++;
+				timer2 ++;
+				move() ;
+				x = restrict(x, 5, Engine.WIDTH - 50);
+				y = restrict(y, 5, Engine.HEIGHT - 75);
+				if (this.getHealth() == 0){
+					handler.removeObject(this);
+				}
+				x += speedX;
+				y += speedY;
+				if(this.getHealth() <= 0) 
+				{
+					handler.addObject(new Boss1(450, 20, 1000, ID.Enemy, handler));
+					handler.addObject(new Boss1(550, 20, 1000, ID.Enemy, handler));
+
+				}
+
+
+
+
+
+
+
 			}
 
 		}

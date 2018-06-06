@@ -14,6 +14,7 @@ public abstract class Actor {
 		this.id = id;
 	}
 	
+	
 	public void setX(int x) {
 		this.x = x;
 	}
@@ -57,5 +58,8 @@ public abstract class Actor {
 	public abstract void tick();
 	public abstract void render(Graphics g);
 	public abstract Rectangle getBounds();
+	public abstract boolean canShield();
+	public abstract void setShield(int CD);
+	public abstract int getTim ();
 
 }

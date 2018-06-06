@@ -22,7 +22,6 @@ public class Engine extends Canvas implements Runnable {
 	private Handler handler;
 
 	public static int timer;
-	public SpawnSystem elite;
 	public static boolean paused = false;
 	public static boolean reset = false;
 	public static int score;
@@ -30,6 +29,10 @@ public class Engine extends Canvas implements Runnable {
 	public Event event;
 	//ChangeEvent.Game (to skip the menu (easier debug))
 	public Menu menu;
+	private FatAlbert albert = new FatAlbert(0,0,0, ID.Albert);
+	private SSMinnowJohnson john = new SSMinnowJohnson(0,0,0, ID.John);
+	private SpeedyGonzales gon = new SpeedyGonzales(0,0,0, ID.Gon);
+	
 	
 
 	public static void infoBox(String infoMessage, String titleBar)
@@ -49,7 +52,7 @@ public class Engine extends Canvas implements Runnable {
 		this.addKeyListener( new KeyUser(handler,this) );
 		this.addMouseListener(menu);
 
-		elite = new SpawnSystem(handler);
+
 	}
 
 	public synchronized void start(){ 
@@ -75,7 +78,6 @@ public class Engine extends Canvas implements Runnable {
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
-		int frames = 0;
 		while (running){ 
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
@@ -87,12 +89,6 @@ public class Engine extends Canvas implements Runnable {
 			if(running){
 				render(); 
 			}
-			frames++;
-			if(System.currentTimeMillis() - timer > 1000){
-				timer += 1000;
-				//System.out.println("FPS: " + frames);
-				frames = 0;
-			}
 		}
 		stop();
 	}
@@ -100,9 +96,11 @@ public class Engine extends Canvas implements Runnable {
 	private void tick(){
 
 		if (event == Event.Game) {
-			if (!paused) {
-				score++;
-				handler.tick();
+			if(handler.checkFor(albert) || handler.checkFor(john) || handler.checkFor(gon)){
+				if (!paused) {
+					score++;
+					handler.tick();
+				}
 			}
 		}
 		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection) {
@@ -168,7 +166,22 @@ public class Engine extends Canvas implements Runnable {
 			int[] y6 = {30 + 50, 42 + 50, 60 + 50, 50 + 50, 60 + 50, 42 + 50, 30 + 50, 30 + 50, 15 + 50, 30 + 50, 30 + 50};
 			g.fillPolygon(x6, y6, 11);
 			
-			//HEALTH CODE
+			
+			//icon for shield
+			
+			g.setColor(Color.WHITE);
+			g.fillRect(916, 640, 66, 66);
+			g.setColor(Color.CYAN);
+			g.fillRect(927, 650, 44, 7);
+			g.setColor(Color.CYAN);
+			g.fillRect(927, 650, 7, 43);
+			g.setColor(Color.CYAN);
+			g.fillRect(927, 688, 44, 7);
+			g.setColor(Color.CYAN);
+			g.fillRect(965,650, 7, 45);
+
+
+			//health bar
 			g.setColor(Color.DARK_GRAY);
 			g.fillRect(10, HEIGHT - 60, 400, 30);
 			for(int i = 0; i < handler.actors.size(); i ++) {
@@ -180,9 +193,15 @@ public class Engine extends Canvas implements Runnable {
 					g.setColor(Color.LIGHT_GRAY);
 					g.drawString("Health: " + temp.getHealth(), 10, HEIGHT - 60);
 					g.setFont(norm);
-
+					if(!temp.canShield()) 
+					{
+						g.setColor(Color.GRAY);
+						g.fillRect(916, 640, 66, temp.getTim() / 3);
+					}
 				}
+
 			}
+			
 			g.setColor(Color.gray);
 			g.drawRect(10, HEIGHT - 60, 400, 30);
 

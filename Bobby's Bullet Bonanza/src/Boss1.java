@@ -27,6 +27,12 @@ public class Boss1 extends Enemy
 		}
 		x += speedX;
 		y += speedY;
+		if(this.getHealth() <= 0) 
+		{
+			handler.addObject(new Boss2(500, 20, 3000, ID.Enemy, handler));
+			
+				
+			}
 
 	}
 
@@ -42,6 +48,15 @@ public class Boss1 extends Enemy
 
 		g.setColor(Color.BLACK);
 		g.fillRect(x + 15, y + 60, 60, 10);
+		
+		g.setColor(Color.GREEN);
+		g.fillRect(0 , 0 ,(this.getHealth()) , 10);
+		
+		g.setColor(Color.GRAY);
+		g.drawRect(0 , 0 , 1000, 10);
+		
+		g.setColor(Color.RED);
+		g.drawRect(x , y , 100, 100);
 		
 		
 	}

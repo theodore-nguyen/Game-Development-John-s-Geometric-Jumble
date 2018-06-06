@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 
 public class SSMinnowJohnson extends Ship{
-
+	private int tim = 0;
 	public SSMinnowJohnson(int x, int y,int h, ID id) {
 		super(x, y, h, id);
 		// TODO Auto-generated constructor stub
@@ -15,6 +15,16 @@ public class SSMinnowJohnson extends Ship{
 
 		x = restrict(x, 5, Engine.WIDTH - 50);
 		y = restrict(y, 250, Engine.HEIGHT - 100);
+		tim ++ ;
+		if(tim == 200) 
+		{
+			this.setShield(1);
+			tim = 0;
+		}
+	}
+	public int getTim() 
+	{
+		return tim;
 	}
 	public void render(Graphics g)
 	{	
@@ -41,6 +51,6 @@ public class SSMinnowJohnson extends Ship{
 		//inner design
 		g.setColor(Color.MAGENTA);
 		g.fillRect(x + 10, y + 10, 20, 20);
-		
+
 	}
 }

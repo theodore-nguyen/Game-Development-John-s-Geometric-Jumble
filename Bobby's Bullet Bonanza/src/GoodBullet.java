@@ -8,7 +8,7 @@ public class GoodBullet extends Ship{
 	public GoodBullet(int x, int y, int h, ID id, Handler handler) {
 		super(x, y, h, id);
 		this.handler = handler;
-		setSpeedY(-10);
+		setSpeedY(-15);
 	}
 	public void tick() {
 		x += speedX * 1;

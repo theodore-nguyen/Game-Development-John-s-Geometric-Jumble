@@ -17,9 +17,9 @@ public class Window {
 		
 		frame.requestFocusInWindow();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.add(engine);
-		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		engine.start();
 	}

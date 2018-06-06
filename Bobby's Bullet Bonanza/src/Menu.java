@@ -68,19 +68,19 @@ public class Menu extends MouseAdapter{
 			if(inBounds(mouseX, mouseY, 135, 295, 70, 55)) {
 				engine.event = Event.Game;	
 				handler.addObject(new FatAlbert( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.Albert));
-				handler.addObject(new Boss3(500, 20, 1000, ID.Enemy, handler));
+				handler.addObject(new Boss1(500, 20, 1000, ID.Enemy, handler));
 			}
 			//S.S. Minnow Johnson
 			if(inBounds(mouseX, mouseY, 450, 295, 70, 55)) {
 				engine.event = Event.Game;	
 				handler.addObject(new SSMinnowJohnson( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.John));
-				handler.addObject(new Boss3(500, 20, 1000, ID.Enemy, handler));
+				handler.addObject(new Boss1(500, 20, 1000, ID.Enemy, handler));
 			}
 			//Speed Gonzales
 			if(inBounds(mouseX, mouseY, 785, 295, 70, 55)) {
 				engine.event = Event.Game;	
 				handler.addObject(new SpeedyGonzales( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.Gon));
-				handler.addObject(new Boss3(500, 20, 1000, ID.Enemy, handler));
+				handler.addObject(new Boss1(500, 20, 1000, ID.Enemy, handler));
 			}
 		}
 
@@ -183,6 +183,22 @@ public class Menu extends MouseAdapter{
 			g.drawRect(110, 400, 50, 50);g.drawString("J",128, 435);
 			g.drawRect(170, 400, 50, 50);g.drawString("K",186, 435);
 			g.drawString("Shoot", 275, 435);
+			
+			//Spacebar
+			g.drawRect(50, 480, 300, 50);
+			g.drawString("Spacebar", 140, 515);
+			g.drawString("Shield", 360, 515);
+			
+			//ability
+			g.drawRect(50, 560, 50, 50);
+			g.drawString("Q", 65, 595);
+			g.drawString("Special Ability", 115, 595);
+			
+			//Escape
+			g.drawRect(50, 640, 50, 50);
+			g.drawString("Esc", 53, 675);
+			g.drawString("Go back", 115, 675);
+	
 		}
 		if (engine.event == Event.CharacterSelection) {
 
@@ -199,33 +215,68 @@ public class Menu extends MouseAdapter{
 			//FAT ALBERT 
 			g.setColor(Color.green);g.drawString("Fat Albert", 120, 250);
 			//PIC OF Fat Albert
+			g.setColor(Color.green);g.fillOval(150 - 15, 300 + 10, 20, 40);
+			g.setColor(Color.green);g.fillOval(150 + 34, 300 + 10, 20, 40);
 			g.setColor(Color.white);g.fillRect(150, 300, 40, 40);
 			g.setColor(Color.green);g.fillRect(150 + 10, 300 + 10, 20, 20);
-			g.setColor(Color.white);g.fillOval(150 - 15, 300 + 10, 20, 40);
-			g.setColor(Color.white);g.fillOval(150 + 34, 300 + 10, 20, 40);
 			g.setColor(Color.green);g.fillRect(150, 300 - 5, 10, 5);
 			g.setColor(Color.green);g.fillRect(150 + 30,  300 - 5, 10, 5);
+			
+			g.drawString("Fat Albert is fat", 80, 380);
+			g.drawString("Honestly a mammoth", 50, 405);
+			g.drawString("If you pick him", 85, 430);
+			g.drawString("You can expect", 80, 455);
+			g.drawString("+Increased Health", 70, 480);
+			g.drawString("+Quick Regeneration", 50, 505);
+			g.drawString("However,", 115, 530);
+			g.drawString("Let it be known", 80, 555);
+			g.drawString("You'll experience", 70, 580);
+			g.drawString("-Decreased speed", 60, 605);
 			//BOUNDARIES-- g.drawRect(135, 295, 70, 55);
 			//S.S. MINNOW JOHNSON
 			g.setColor(Color.MAGENTA);g.drawString("S.S. Minnow", 410, 250);g.drawString("Johnson",430, 280);
 			//PIC OF S.S. Minnow Johnson
+			g.setColor(Color.MAGENTA);g.fillOval(465 - 15, 300 + 10, 20, 40);
+			g.setColor(Color.MAGENTA);g.fillOval(465 + 34, 300 + 10, 20, 40);
 			g.setColor(Color.white);g.fillRect(465, 300, 40, 40);
 			g.setColor(Color.MAGENTA);g.fillRect(465 + 10, 300 + 10, 20, 20);
-			g.setColor(Color.white);g.fillOval(465 - 15, 300 + 10, 20, 40);
-			g.setColor(Color.white);g.fillOval(465 + 34, 300 + 10, 20, 40);
 			g.setColor(Color.MAGENTA);g.fillRect(465, 300 - 5, 10, 5);
 			g.setColor(Color.MAGENTA);g.fillRect(465 + 30,  300 - 5, 10, 5);
+			
+			g.drawString("Johnson is a normie", 360, 380);
+			g.drawString("Just an everyday Joe", 353, 405);
+			g.drawString("If you pick him", 390, 430);
+			g.drawString("You can expect", 385, 455);
+			g.drawString("+Giant Bullet", 395, 480);
+			g.drawString("However,", 425, 505);
+			g.drawString("Let it be known", 390, 530);
+			g.drawString("You'll experience", 375, 555);
+			g.drawString("Normal speed", 400, 580);
+			g.drawString("Normal health", 400, 605);
 			//BOUNDARIES -- g.drawRect(450, 295, 70, 55);
 			
 			//SPEEDY GONZALES
 			g.setColor(Color.blue);g.drawString("Speedy", 775, 250);g.drawString("Gonzales", 765, 280);
 			//PIC OF Speedy Gonzales
+			g.setColor(Color.blue);g.fillOval(800 - 15, 300 + 10, 20, 40);
+			g.setColor(Color.blue);g.fillOval(800 + 34, 300 + 10, 20, 40);
 			g.setColor(Color.white);g.fillRect(800, 300, 40, 40);
 			g.setColor(Color.blue);g.fillRect(800 + 10, 300 + 10, 20, 20);
-			g.setColor(Color.white);g.fillOval(800 - 15, 300 + 10, 20, 40);
-			g.setColor(Color.white);g.fillOval(800 + 34, 300 + 10, 20, 40);
 			g.setColor(Color.blue);g.fillRect(800, 300 - 5, 10, 5);
 			g.setColor(Color.blue);g.fillRect(800 + 30,  300 - 5, 10, 5);
+			
+			
+
+g.drawString("Gonzales is a Ferrari", 700, 380);
+			g.drawString("Representing Mexico", 700, 405);
+			g.drawString("If you pick him", 735, 430);
+			g.drawString("You can expect", 730, 455);
+			g.drawString("+Increased speed", 710, 480);
+			g.drawString("+Wipeout bullets", 710, 505);
+			g.drawString("However,", 765, 530);
+			g.drawString("Let it be known", 730, 555);
+			g.drawString("You'll experience", 720, 580);
+			g.drawString("-Decreased health", 710, 605);
 			//BOUNDARIES -- g.drawRect(785, 295, 70, 55);
 			
 		}

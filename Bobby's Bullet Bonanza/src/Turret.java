@@ -32,6 +32,9 @@ public class Turret extends Enemy
 	public void render(Graphics g) {
 		g.setColor(Color.red);
 		g.fillRect(x, y, 40, 60);
+		
+		g.setColor(Color.YELLOW);
+		g.drawRect(x, y, 40, 60);
 
 	}
 	public Rectangle getBounds() {

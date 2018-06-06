@@ -3,7 +3,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class Ship extends Actor {
-	
+	private boolean ShieldCD = true;
+	private int tim = 0;
 	public Ship(int x, int y, int h, ID id) {
 		super(x, y, h, id);
 	}
@@ -24,6 +25,25 @@ public class Ship extends Actor {
 	public void render(Graphics g) {
 		g.setColor(Color.white);
 		g.fillRect(x, y, 40, 40);
+	}
+	public boolean canShield() 
+	{
+		return ShieldCD;
+	}
+	public void setShield(int CD) 
+	{
+		if (CD == 1) 
+		{
+			ShieldCD = true;
+		}
+		if(CD == 2) 
+		{
+			ShieldCD = false;
+		}
+	}
+	public int getTim() 
+	{
+		return tim;
 	}
 
 	//Default Ship size

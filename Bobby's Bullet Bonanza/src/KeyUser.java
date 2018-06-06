@@ -80,15 +80,23 @@ public class KeyUser implements KeyListener{
 
 				if (e.getKeyCode() == KeyEvent.VK_J) h.addObject( new GoodBullet(temp.getX(), temp.getY() - 20, 5, ID.GoodBullet, h));
 				if (e.getKeyCode() == KeyEvent.VK_K) h.addObject(new GoodBullet(temp.getX() + 30, temp.getY() - 20, 5, ID.GoodBullet, h));		
-				if (e.getKeyCode() == KeyEvent.VK_SPACE) h.addObject(new Shield(temp.getX(), temp.getY(), 10, ID.Shield, h));
-				if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
-					if (engine.event == Event.Game) {
-						if (Engine.paused) Engine.paused = false;
-						else Engine.paused = true;	
-					}	
-				}
-				
-					
+				if (e.getKeyCode() == KeyEvent.VK_SPACE) 
+					if(temp.canShield())
+					{
+						h.addObject(new Shield(0, 0, 15, ID.Shield, h));
+						temp.setShield(2);
+					}				
+			}
+		}
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			if (engine.event == Event.Game) {
+				if (Engine.paused) Engine.paused = false;
+				else Engine.paused = true;	
+			}
+			else if(engine.event == Event.CharacterSelection) engine.event = Event.Menu;
+			else if(engine.event == Event.Help) {
+				Engine.reset = true;
+				engine.event = Event.Menu;
 			}
 		}
 	}
