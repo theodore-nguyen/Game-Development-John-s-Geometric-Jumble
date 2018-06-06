@@ -27,8 +27,6 @@ public class MedKit extends Ship{
 
 	}
 
-
-
 	public void tick() {
 		for(int i = 0; i < handler.actors.size(); i ++) {
 			Actor temp = handler.actors.get(i);
@@ -50,7 +48,6 @@ public class MedKit extends Ship{
 
 		}
 	}
-
 
 }
 
