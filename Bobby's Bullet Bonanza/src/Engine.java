@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
  * Images used:
  * (anime)https://www.zerochan.net/1915298
  * (stars)https://www.pond5.com/stock-footage/23768280/simple-star-space-background-effect.html
+ * (gameover)https://twitter.com/game_over_ports
  */
 
 public class Engine extends Canvas implements Runnable {
