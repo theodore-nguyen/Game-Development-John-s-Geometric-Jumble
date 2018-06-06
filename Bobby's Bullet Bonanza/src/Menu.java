@@ -72,19 +72,19 @@ public class Menu extends MouseAdapter{
 			if(inBounds(mouseX, mouseY, 135, 295, 70, 55)) {
 				engine.event = Event.Game;	
 				handler.addObject(new FatAlbert( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.Albert));
-				handler.addObject(new Boss1(500, 20, 1000, ID.Enemy, handler));
+				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler));
 			}
 			//S.S. Minnow Johnson
 			if(inBounds(mouseX, mouseY, 450, 295, 70, 55)) {
 				engine.event = Event.Game;	
 				handler.addObject(new SSMinnowJohnson( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.John));
-				handler.addObject(new Boss1(500, 20, 1000, ID.Enemy, handler));
+				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler));
 			}
 			//Speed Gonzales
 			if(inBounds(mouseX, mouseY, 785, 295, 70, 55)) {
 				engine.event = Event.Game;	
 				handler.addObject(new SpeedyGonzales( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.Gon));
-				handler.addObject(new Boss1(500, 20, 1000, ID.Enemy, handler));
+				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler));
 			}
 		}
 
@@ -263,18 +263,16 @@ public class Menu extends MouseAdapter{
 			//BOUNDARIES -- g.drawRect(450, 295, 70, 55);
 			
 			//SPEEDY GONZALES
-			g.setColor(Color.blue);g.drawString("Speedy", 775, 250);g.drawString("Gonzales", 765, 280);
+			g.setColor(Color.CYAN);g.drawString("Speedy", 775, 250);g.drawString("Gonzales", 765, 280);
 			//PIC OF Speedy Gonzales
-			g.setColor(Color.blue);g.fillOval(800 - 15, 300 + 10, 20, 40);
-			g.setColor(Color.blue);g.fillOval(800 + 34, 300 + 10, 20, 40);
+			g.setColor(Color.CYAN);g.fillOval(800 - 15, 300 + 10, 20, 40);
+			g.setColor(Color.CYAN);g.fillOval(800 + 34, 300 + 10, 20, 40);
 			g.setColor(Color.white);g.fillRect(800, 300, 40, 40);
-			g.setColor(Color.blue);g.fillRect(800 + 10, 300 + 10, 20, 20);
-			g.setColor(Color.blue);g.fillRect(800, 300 - 5, 10, 5);
-			g.setColor(Color.blue);g.fillRect(800 + 30,  300 - 5, 10, 5);
+			g.setColor(Color.CYAN);g.fillRect(800 + 10, 300 + 10, 20, 20);
+			g.setColor(Color.CYAN);g.fillRect(800, 300 - 5, 10, 5);
+			g.setColor(Color.CYAN);g.fillRect(800 + 30,  300 - 5, 10, 5);
 			
-			
-
-g.drawString("Gonzales is a Ferrari", 700, 380);
+			g.drawString("Gonzales is a Ferrari", 700, 380);
 			g.drawString("Representing Mexico", 700, 405);
 			g.drawString("If you pick him", 735, 430);
 			g.drawString("You can expect", 730, 455);

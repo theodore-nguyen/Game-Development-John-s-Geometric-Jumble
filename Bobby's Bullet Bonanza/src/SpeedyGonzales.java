@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 public class SpeedyGonzales extends Ship{
 	private int tim = 0;
+	public static boolean ability = false;
 	public SpeedyGonzales(int x, int y,int h, ID id) {
 		super(x, y, h, id);
 		// TODO Auto-generated constructor stub
@@ -30,19 +31,19 @@ public class SpeedyGonzales extends Ship{
 	public void render(Graphics g)
 	{	
 		//booster left
-		g.setColor(Color.blue);
+		g.setColor(Color.CYAN);
 		g.fillOval(x - 15, y + 10, 20, 40);
 
 		//booster right
-		g.setColor(Color.blue);
+		g.setColor(Color.CYAN);
 		g.fillOval(x + 34, y + 10, 20, 40);
 
 		//shooter left
-		g.setColor(Color.blue);
+		g.setColor(Color.CYAN);
 		g.fillRect(x, y - 5, 10, 5);
 
 		//shooter right
-		g.setColor(Color.blue);
+		g.setColor(Color.CYAN);
 		g.fillRect(x + 30, y - 5, 10, 5);
 
 		//box
@@ -50,7 +51,7 @@ public class SpeedyGonzales extends Ship{
 		g.fillRect(x, y, 40, 40);
 
 		//inner design
-		g.setColor(Color.blue);
+		g.setColor(Color.CYAN);
 		g.fillRect(x + 10, y + 10, 20, 20);
 	}
 }

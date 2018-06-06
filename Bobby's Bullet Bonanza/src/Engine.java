@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
 /* Thanks to:
  * Influenced by Youtube Channel RealTutsGML 
  * Images used:
- * https://www.zerochan.net/1915298
+ * (anime)https://www.zerochan.net/1915298
+ * (stars)https://www.pond5.com/stock-footage/23768280/simple-star-space-background-effect.html
  */
 
 public class Engine extends Canvas implements Runnable {

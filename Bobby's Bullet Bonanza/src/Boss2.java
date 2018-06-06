@@ -29,7 +29,7 @@ public class Boss2 extends Boss1 {
 		y += speedY;
 		if(this.getHealth() <= 0) 
 		{
-			handler.addObject(new Boss3(500, 20, 5000, ID.Enemy, handler));
+			handler.addObject(new Boss3(500, 20, 5000, ID.Boss, handler));
 		}
 
 

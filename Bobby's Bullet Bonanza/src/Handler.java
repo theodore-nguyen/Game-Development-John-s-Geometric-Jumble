@@ -13,6 +13,9 @@ public class Handler {
 			if(Engine.reset) {
 				removeObject(temp);
 			}
+			if(SpeedyGonzales.ability) {
+				if(temp.id == ID.BadBullet) removeObject(temp);
+			}
 			if (temp.getHealth() <= 0) {
 				removeObject(temp);
 			}
@@ -26,6 +29,13 @@ public class Handler {
 			timer++;
 			if (timer == 20) {
 				Engine.reset = false;
+				timer = 0;
+			}
+		}
+		if(SpeedyGonzales.ability) {
+			timer++;
+			if (timer == 10) {
+				SpeedyGonzales.ability = false;
 				timer = 0;
 			}
 		}

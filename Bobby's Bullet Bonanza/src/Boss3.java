@@ -76,8 +76,8 @@ import java.awt.Rectangle;
 				y += speedY;
 				if(this.getHealth() <= 0) 
 				{
-					handler.addObject(new Boss1(450, 20, 1000, ID.Enemy, handler));
-					handler.addObject(new Boss1(550, 20, 1000, ID.Enemy, handler));
+					handler.addObject(new Boss1(450, 20, 1000, ID.Boss, handler));
+					handler.addObject(new Boss1(550, 20, 1000, ID.Boss, handler));
 
 				}
 

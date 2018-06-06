@@ -3,8 +3,13 @@ import java.awt.Graphics;
 
 public class FatAlbert extends Ship {
 	private int tim = 0;
+	public static boolean ability = false;
+	private int health;
+	private int uptime = 1;
+	private int regen;
 	public FatAlbert(int x, int y, int h, ID id) {
 		super(x, y, h, id);
+		this.health = h;
 		// TODO Auto-generated constructor stub	
 	}
 	//How fast FatAlbert is moving
@@ -20,14 +25,24 @@ public class FatAlbert extends Ship {
 			tim = 0;
 			this.setShield(1);
 		}
-		
+		//ABILTY
+		regen = this.getHealth();
+		if(ability) {
+			uptime++;
+			if(regen < health) regen ++;
+			if(uptime < 2000) {
+				this.setHealth(regen);
+			} else {
+				uptime = 0;
+				ability = false;
+			}
+		}
 	}
 	public int getTim() 
 	{
 		return tim;
 	}
 	
-
 	public void render(Graphics g) {
 		//booster left
 		g.setColor(Color.green);
