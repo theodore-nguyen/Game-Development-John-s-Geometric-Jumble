@@ -54,7 +54,6 @@ public abstract class Actor {
 		else
 			return 0;
 	}
-	
 	public abstract void tick();
 	public abstract void render(Graphics g);
 	public abstract Rectangle getBounds();

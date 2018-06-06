@@ -3,12 +3,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.lang.Thread.State;
-
+import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 
 
-// Influenced by Youtube Channel RealTutsGML 
+// Game Created by Theodore Nguyen, Wesley Wang, Ethan Phuong, Stephen Shen
+/* Thanks to:
+ * Influenced by Youtube Channel RealTutsGML 
+ * Images used:
+ * https://www.zerochan.net/1915298
+ */
 
 public class Engine extends Canvas implements Runnable {
 
@@ -29,6 +33,7 @@ public class Engine extends Canvas implements Runnable {
 	public Event event;
 	//ChangeEvent.Game (to skip the menu (easier debug))
 	public Menu menu;
+	private BufferedImage background = null;
 	private FatAlbert albert = new FatAlbert(0,0,0, ID.Albert);
 	private SSMinnowJohnson john = new SSMinnowJohnson(0,0,0, ID.John);
 	private SpeedyGonzales gon = new SpeedyGonzales(0,0,0, ID.Gon);
@@ -46,8 +51,9 @@ public class Engine extends Canvas implements Runnable {
 		handler = new Handler();
 		menu = new Menu(this, handler);
 		new Window(WIDTH, HEIGHT, "John's Geometric Jumble", this);
+		BufferedImageLoader loader = new BufferedImageLoader();
+		background = loader.loadImage("/stars.jpeg");
 		
-
 		this.requestFocusInWindow();
 		this.addKeyListener( new KeyUser(handler,this) );
 		this.addMouseListener(menu);
@@ -129,46 +135,13 @@ public class Engine extends Canvas implements Runnable {
 		//BLACK CANVAS
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
-
+		g.drawImage(background, 0, 0, null);
 		if (event == Event.Game) {
 			//Score
 			g.setColor(Color.white);
 			g.drawString("Score: " + score, 100, 100);
 			
-			//STARS
-			g.setColor(Color.yellow);
-			int[] x1 = {15, 27, 20, 35, 50, 43, 55, 40, 35, 30, 20};
-			int[] y1 = {30, 42, 60, 50, 60, 42, 30, 30, 15, 30, 30};
-			g.fillPolygon(x1, y1, 11);
-
-			g.setColor(Color.yellow);
-			int[] x2 = {15, 27, 20, 35, 50, 43, 55, 40, 35, 30, 20};
-			int[] y2 = {30 + 50, 42 + 50, 60 + 50, 50 + 50, 60 + 50, 42 + 50, 30 + 50, 30 + 50, 15 + 50, 30 + 50, 30 + 50};
-			g.fillPolygon(x2, y2, 11);
-
-			g.setColor(Color.yellow);
-			int[] x3 = {15 + 50, 27 + 50, 20 + 50, 35 + 50, 50 + 50, 43 + 50, 55 + 50, 40 + 50, 35 + 50, 30 + 50, 20 + 50};
-			int[] y3 = {30, 42, 60, 50, 60, 42, 30, 30, 15, 30, 30};
-			g.fillPolygon(x3, y3, 11);
-
-			g.setColor(Color.yellow);
-			int[] x4 = {985, 973, 980, 965, 950, 957, 945, 960, 965, 970, 980};
-			int[] y4 = {30, 42, 60, 50, 60, 42, 30, 30, 15, 30, 30};
-			g.fillPolygon(x4, y4, 11);
-
-			g.setColor(Color.yellow);
-			int[] x5 = {985 - 50, 973 - 50, 980 - 50, 965 - 50, 950 - 50, 957 - 50, 945 - 50, 960 - 50, 965 - 50, 970 - 50, 980 - 50};
-			int[] y5 = {30, 42, 60, 50, 60, 42, 30, 30, 15, 30, 30};
-			g.fillPolygon(x5, y5, 11);
-
-			g.setColor(Color.yellow);
-			int[] x6 = {985, 973, 980, 965, 950, 957, 945, 960, 965, 970, 980};
-			int[] y6 = {30 + 50, 42 + 50, 60 + 50, 50 + 50, 60 + 50, 42 + 50, 30 + 50, 30 + 50, 15 + 50, 30 + 50, 30 + 50};
-			g.fillPolygon(x6, y6, 11);
-			
-			
-			//icon for shield
-			
+			//icon for shield		
 			g.setColor(Color.WHITE);
 			g.fillRect(916, 640, 66, 66);
 			g.setColor(Color.CYAN);

@@ -3,9 +3,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.JFrame;
-
+import java.awt.image.BufferedImage;
 
 public class Menu extends MouseAdapter{
 	private Color col;
@@ -19,10 +17,16 @@ public class Menu extends MouseAdapter{
 	private int nextGreen;
 	private Engine engine;
 	private Handler handler;
+	private BufferedImage menubackground = null;
+	private BufferedImage background = null;
+	//https://www.zerochan.net/1915298
 
 	public Menu(Engine engine, Handler handler) {
 		this.engine = engine;
 		this.handler = handler;
+		BufferedImageLoader loader = new BufferedImageLoader();
+		menubackground = loader.loadImage("/background2.jpg");
+		background = loader.loadImage("/backgroundsp.jpg");
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -144,11 +148,13 @@ public class Menu extends MouseAdapter{
 	public void render(Graphics g) {
 
 		col = new Color(red,blue,green);
-		Font font = new Font("Because I am Happy", 1, 42);
+		Font font = new Font(null, 1, 42);
 		Font title = new Font("Magneto",Font.BOLD, 60);
 		Font instructions = new Font("Helvetica", 1, 60);
 		Font small = new Font("Helvetica", 1, 25);
 		if(engine.event == Event.Menu) {
+			//Background
+			g.drawImage(menubackground, 0, 0, null);
 			//Title
 			g.setColor(col);g.setFont(title);g.drawString("John's Gemometric Jumble", 60, 150);
 			
@@ -164,6 +170,7 @@ public class Menu extends MouseAdapter{
 
 			g.setColor(col);
 			g.setFont(font);
+			//g.drawImage(background, -300, 0, null);
 
 			//Back Button
 			g.drawString("Back", 50, 80);g.drawRect(40, 30, 120, 64);

@@ -5,9 +5,11 @@ import java.awt.Rectangle;
 public class GoodBullet extends Ship{
 
 	private Handler handler;
-	public GoodBullet(int x, int y, int h, ID id, Handler handler) {
+	private Color col;
+	public GoodBullet(int x, int y, int h, ID id, Handler handler, Color col) {
 		super(x, y, h, id);
 		this.handler = handler;
+		this.col = col;
 		setSpeedY(-15);
 	}
 	public void tick() {
@@ -27,7 +29,7 @@ public class GoodBullet extends Ship{
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.CYAN);
+		g.setColor(col);
 		g.fillRect(x, y, 10, 15);
 	}
 

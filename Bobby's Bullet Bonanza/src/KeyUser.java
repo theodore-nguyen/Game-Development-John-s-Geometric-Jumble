@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -51,7 +52,7 @@ public class KeyUser implements KeyListener{
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
-			
+
 		for(int i = 0; i < h.actors.size(); i ++) {
 			Actor temp = h.actors.get(i);
 			int key = e.getKeyCode();
@@ -78,8 +79,16 @@ public class KeyUser implements KeyListener{
 					temp.setSpeedX(0);
 				}
 
-				if (e.getKeyCode() == KeyEvent.VK_J) h.addObject( new GoodBullet(temp.getX(), temp.getY() - 20, 5, ID.GoodBullet, h));
-				if (e.getKeyCode() == KeyEvent.VK_K) h.addObject(new GoodBullet(temp.getX() + 30, temp.getY() - 20, 5, ID.GoodBullet, h));		
+				if (e.getKeyCode() == KeyEvent.VK_J) {
+					if (temp.id == ID.John) h.addObject(new GoodBullet(temp.getX(), temp.getY() - 20, 5, ID.GoodBullet, h, Color.MAGENTA));
+					if (temp.id == ID.Albert) h.addObject(new GoodBullet(temp.getX(), temp.getY() - 20, 5, ID.GoodBullet, h, Color.CYAN));
+					if (temp.id == ID.Gon) h.addObject(new GoodBullet(temp.getX(), temp.getY() - 20, 5, ID.GoodBullet, h, Color.GREEN));
+				}
+				if (e.getKeyCode() == KeyEvent.VK_K) {
+					if (temp.id == ID.John) h.addObject(new GoodBullet(temp.getX() + 30, temp.getY() - 20, 5, ID.GoodBullet, h, Color.MAGENTA));
+					if (temp.id == ID.Albert) h.addObject(new GoodBullet(temp.getX() + 30, temp.getY() - 20, 5, ID.GoodBullet, h, Color.CYAN));
+					if (temp.id == ID.Gon) h.addObject(new GoodBullet(temp.getX() + 30, temp.getY() - 20, 5, ID.GoodBullet, h, Color.GREEN));
+				}
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) 
 					if(temp.canShield())
 					{
