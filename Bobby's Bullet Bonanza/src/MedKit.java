@@ -39,8 +39,8 @@ public class MedKit extends Ship{
 					{
 						temp.setHealth(temp.getMax());
 					}
-					else{
-						temp.setHealth(temp.getHealth() + 50);
+					else {
+						temp.setHealth(temp.getHealth() + 25);
 						
 					}
 					handler.removeObject(this);

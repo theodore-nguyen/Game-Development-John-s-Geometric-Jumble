@@ -34,7 +34,7 @@ public class Handler {
 		}
 		if(SpeedyGonzales.ability) {
 			timer++;
-			if (timer == 10) {
+			if (timer == 75) {
 				SpeedyGonzales.ability = false;
 				timer = 0;
 			}

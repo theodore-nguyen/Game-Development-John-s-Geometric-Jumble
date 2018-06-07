@@ -6,6 +6,8 @@ public class Ship extends Actor {
 	private boolean ShieldCD = true;
 	private int tim = 0;
 	protected int maxHealth;
+	public boolean Special;
+	public int timtoo;
 	public Ship(int x, int y, int h, ID id) {
 		super(x, y, h, id);
 	}
@@ -31,16 +33,9 @@ public class Ship extends Actor {
 	{
 		return ShieldCD;
 	}
-	public void setShield(int CD) 
+	public void setShield(boolean cd) 
 	{
-		if (CD == 1) 
-		{
-			ShieldCD = true;
-		}
-		if(CD == 2) 
-		{
-			ShieldCD = false;
-		}
+		ShieldCD = cd;
 	}
 	public int getTim() 
 	{
@@ -56,9 +51,19 @@ public class Ship extends Actor {
 		Rectangle rect = new Rectangle(x, y, 40, 40);
 		return rect;
 	}
-	
+	public boolean CanSpecial() 
+	{
+		return Special;
+	}
+	public void setSpecial(boolean S) 
+	{
+		Special = S;
+	} 
 
 
-	
+	public int getTimtoo() 
+	{
+		return timtoo;
+	}
 
 }

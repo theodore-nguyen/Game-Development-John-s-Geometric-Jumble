@@ -38,7 +38,7 @@ public class BigBullet extends GoodBullet{
 		g.setColor(Color.MAGENTA);
 		g.fillRoundRect(x, y, 100, 100, 100, 100);
 		
-		g.setColor(Color.BLACK);
+		g.setColor(Color.WHITE);
 		g.drawRoundRect(x, y, 100, 100, 100, 100);
 
 	}

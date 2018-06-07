@@ -59,8 +59,10 @@ public abstract class Actor {
 	public abstract void render(Graphics g);
 	public abstract Rectangle getBounds();
 	public abstract boolean canShield();
-	public abstract void setShield(int CD);
+	public abstract void setShield(boolean cd);
 	public abstract int getTim ();
 	public abstract int getMax();
-
+	public abstract boolean CanSpecial(); 
+	public abstract void setSpecial(boolean S); 
+	public abstract int getTimtoo();
 }

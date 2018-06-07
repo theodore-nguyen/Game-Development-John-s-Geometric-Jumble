@@ -10,6 +10,8 @@ public class KeyUser implements KeyListener{
 	private boolean s;
 	private boolean d;
 	private Engine engine;
+	public static boolean shootJ = false;
+	public static boolean shootK = false;
 
 	public KeyUser (Handler handler, Engine engine) {
 		h = handler;
@@ -45,7 +47,6 @@ public class KeyUser implements KeyListener{
 					temp.setSpeedX(2);
 					d = true;
 				}
-
 			}
 		}
 
@@ -78,7 +79,6 @@ public class KeyUser implements KeyListener{
 				if (!a && !d) {
 					temp.setSpeedX(0);
 				}
-
 				if (e.getKeyCode() == KeyEvent.VK_J) {
 					if (temp.id == ID.John) h.addObject(new GoodBullet(temp.getX(), temp.getY() - 20, 5, ID.GoodBullet, h, Color.MAGENTA));
 					if (temp.id == ID.Albert) h.addObject(new GoodBullet(temp.getX(), temp.getY() - 20, 5, ID.GoodBullet, h, Color.GREEN));
@@ -87,19 +87,40 @@ public class KeyUser implements KeyListener{
 				if (e.getKeyCode() == KeyEvent.VK_K) {
 					if (temp.id == ID.John) h.addObject(new GoodBullet(temp.getX() + 30, temp.getY() - 20, 5, ID.GoodBullet, h, Color.MAGENTA));
 					if (temp.id == ID.Albert) h.addObject(new GoodBullet(temp.getX() + 30, temp.getY() - 20, 5, ID.GoodBullet, h, Color.GREEN));
-					if (temp.id == ID.Gon) h.addObject(new GoodBullet(temp.getX() + 30, temp.getY() - 20, 5, ID.GoodBullet, h, Color.CYAN));
+					if (temp.id == ID.Gon) h.addObject(new GoodBullet(temp.getX() + 30, temp.getY() - 20, 5, ID.GoodBullet, h, Color.CYAN));	
 				}
 				if (e.getKeyCode() == KeyEvent.VK_Q) {
-					
-					if (temp.id == ID.John) h.addObject(new BigBullet(temp.getX() - 28, temp.getY() - 100, 300, ID.GoodBullet, h, null));
-					if (temp.id == ID.Albert) FatAlbert.ability = true;
-					if (temp.id == ID.Gon) SpeedyGonzales.ability = true;
+
+					if (temp.id == ID.John) 
+					{
+						if(temp.CanSpecial())
+						{
+							h.addObject(new BigBullet(temp.getX() - 28, temp.getY() - 100, 300, ID.GoodBullet, h, null));
+							temp.setSpecial(false);
+						}	
+					}
+					if (temp.id == ID.Albert)
+					{
+						if(temp.CanSpecial())
+						{
+							FatAlbert.ability = true;
+							temp.setSpecial(false);
+						}	
+
+					}
+					if (temp.id == ID.Gon) 
+						if(temp.CanSpecial())
+						{
+							SpeedyGonzales.ability = true;							
+							temp.setSpecial(false);
+						}	
+
 				}
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) 
 					if(temp.canShield())
 					{
 						h.addObject(new Shield(0, 0, 15, ID.Shield, h));
-						temp.setShield(2);
+						temp.setShield(false);
 					}				
 			}
 		}

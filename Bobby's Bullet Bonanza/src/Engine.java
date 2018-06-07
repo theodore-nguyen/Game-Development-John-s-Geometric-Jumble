@@ -13,8 +13,7 @@ import javax.swing.JOptionPane;
  * (anime)https://www.zerochan.net/1915298
  * (stars)https://www.pond5.com/stock-footage/23768280/simple-star-space-background-effect.html
  * (gameover)https://twitter.com/game_over_ports
- * (earthchan request)https://thekarmaking.deviantart.com/art/Earth-Chan-render-721645939
- * (win screen) https://wall.alphacoders.com/by_sub_category.php?id=283551&name=Earth-Chan+Wallpapers
+ * (Earth Image)https://www.youtube.com/watch?v=tJV_XTDtKgM
  */
 
 public class Engine extends Canvas implements Runnable {
@@ -48,7 +47,6 @@ public class Engine extends Canvas implements Runnable {
 	}
 
 	public Engine(){
-		//Engine.infoBox("Incoming transmission from Captain John \n \n We are under attack from the Jeobots! \n Please help us Albert, Johnson, and Gozales! \n\n 		~ Captain John ", "Message From John");
 		event = Event.Menu;
 		handler = new Handler();
 		menu = new Menu(this, handler);
@@ -110,7 +108,7 @@ public class Engine extends Canvas implements Runnable {
 				event = Event.Death;
 			}
 		}
-		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death || event == Event.Help2 || event == Event.Win || event == Event.Request) {
+		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death || event == Event.Help2 || event == Event.Win || event==Event.Request) {
 			menu.tick();
 			handler.tick();
 		}
@@ -146,20 +144,47 @@ public class Engine extends Canvas implements Runnable {
 			g.fillRoundRect(921, 645, 55, 55, 55, 55);
 			g.setColor(Color.WHITE);
 			g.fillRoundRect(927, 650, 44, 44, 44, 44);
-			
+			g.setColor(Color.CYAN);
+			g.drawRect(916, 640, 66, 66);
+
+
+
 			//health bar
 			g.setColor(Color.DARK_GRAY);
 			g.fillRect(10, HEIGHT - 60, 400, 30);
 			for(int i = 0; i < handler.actors.size(); i ++) {
 				Actor temp = handler.actors.get(i);
 				if (temp.id == ID.John || temp.id == ID.Albert || temp.id == ID.Gon){
-					
+
 					if(temp.id == ID.Gon){
 						g.setColor(Color.green);
 						g.fillRect(10, HEIGHT - 60, temp.getHealth() * 2, 30);
 						g.setFont(health);
 						g.setColor(Color.LIGHT_GRAY);
 						g.drawString("Health: " + temp.getHealth(), 10, HEIGHT - 60);
+						//icon for special
+						g.setColor(Color.WHITE);
+						g.fillRect(832, 640, 66, 66);
+						g.setColor(Color.RED);
+						g.drawRect(832, 640, 66, 66);
+						g.setColor(Color.RED);
+						g.fillRect(849, 659, 30, 30);
+						g.setColor(Color.GREEN);
+						g.drawRect(849, 659, 30, 30);	
+						g.setColor(Color.RED);
+						g.drawRoundRect(839, 649, 50, 50, 50, 50);
+						g.setColor(Color.RED);
+						g.drawRoundRect(839, 650, 50, 50, 50, 50);
+						g.setColor(Color.RED);
+						g.drawRoundRect(839, 650, 50, 50, 50, 50);
+						g.setColor(Color.RED);
+						g.drawRoundRect(840, 650, 50, 50, 50, 50);
+						if(!temp.CanSpecial()) 
+						{
+							g.setColor(new Color(0, 0, 0, 190));
+							g.fillRect(832, 640, 67, (temp.getTimtoo() / 3));
+						}
+
 					}
 					if(temp.id == ID.John){
 						g.setColor(Color.green);
@@ -167,6 +192,22 @@ public class Engine extends Canvas implements Runnable {
 						g.setFont(health);
 						g.setColor(Color.LIGHT_GRAY);
 						g.drawString("Health: " + temp.getHealth(), 10, HEIGHT - 60);
+
+						g.setColor(Color.white);
+						g.fillRect(832, 640, 66, 66);
+						g.setColor(Color.MAGENTA);
+						g.drawRect(832, 640, 66, 66);
+						g.setColor(Color.MAGENTA);
+						g.fillRoundRect(842, 650, 45, 45, 45, 45);
+						g.setColor(Color.RED);
+						g.drawRoundRect(842, 650, 45, 45, 45, 45);
+
+						if(!temp.CanSpecial()) 
+						{
+							g.setColor(new Color(0, 0, 0, 190));
+							g.fillRect(832, 640, 67, temp.getTimtoo() / 7);
+						}
+
 					}
 					if(temp.id == ID.Albert){
 						g.setColor(Color.green);
@@ -174,12 +215,27 @@ public class Engine extends Canvas implements Runnable {
 						g.setFont(health);
 						g.setColor(Color.LIGHT_GRAY);
 						g.drawString("Health: " + temp.getHealth(), 10, HEIGHT - 60);
+
+						g.setColor(Color.white);
+						g.fillRect(832, 640, 66, 66);
+						g.setColor(Color.RED);
+						g.fillRect(840, 670, 50, 10);
+						g.setColor(Color.RED);
+						g.fillRect(860, 650, 10, 50);
+						g.setColor(Color.GREEN);
+						g.drawRect(832, 640, 66, 66);
+
+						if(!temp.CanSpecial()) 
+						{
+							g.setColor(new Color(0, 0, 0, 190));
+							g.fillRect(832, 640, 67, (temp.getTimtoo() / 66));
+						}
 					}
 					g.setFont(norm);
 					if(!temp.canShield()) 
 					{
-						g.setColor(Color.GRAY);
-						g.fillRect(916, 640, 66, temp.getTim() / 3);
+						g.setColor(new Color(0, 0, 0, 190));
+						g.fillRect(916, 640, 67, (temp.getTim() / 3) + 2);
 					}
 				}
 
@@ -227,7 +283,12 @@ public class Engine extends Canvas implements Runnable {
 			g.setColor(Color.WHITE);
 			g.setFont(title);
 			g.drawRect(200, 100, 600, 500);
-			g.setColor(Color.RED); g.drawString("YOU HAVE DIED!", 255, 200);
+			g.setColor(Color.RED); g.drawString("YOU HAVE FAILED!", 223, 200);
+			g.setColor(Color.white);
+			g.setFont(new Font(null, 1, 20));
+			g.drawString("The universe will perish", 390, 230);
+			g.setFont(new Font(null, Font.BOLD, 35));
+			g.drawString("and it's all your fault", 330, 270);
 
 			g.setColor(Color.white);
 			g.setFont(small);
@@ -240,7 +301,9 @@ public class Engine extends Canvas implements Runnable {
 			g.drawRect(400, 460, 200, 64);
 			g.drawString("Quit", 470, 500);
 			g.setFont(new Font(null, 1, 10));
-			g.drawString("Don't be a chicken", 450, 520);
+			g.drawString("Are you going to give up on the world?", 407, 520);
+
+
 		}
 		g.dispose();
 		bs.show();
