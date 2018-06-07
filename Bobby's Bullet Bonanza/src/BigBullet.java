@@ -21,7 +21,7 @@ public class BigBullet extends GoodBullet{
 				}
 				if (temp.id == ID.Enemy) {
 					int dmg = (this.getHealth() - temp.getHealth());
-					temp.setHealth(temp.getHealth() - this.getHealth());
+					temp.setHealth(0);
 					this.setHealth(dmg);
 				}
 				if (temp.id == ID.Boss) {
@@ -35,7 +35,7 @@ public class BigBullet extends GoodBullet{
 		}
 	}
 	public void render(Graphics g) {
-		g.setColor(Color.pink);
+		g.setColor(Color.MAGENTA);
 		g.fillRoundRect(x, y, 100, 100, 100, 100);
 		
 		g.setColor(Color.BLACK);

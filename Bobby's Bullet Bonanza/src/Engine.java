@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
  * (anime)https://www.zerochan.net/1915298
  * (stars)https://www.pond5.com/stock-footage/23768280/simple-star-space-background-effect.html
  * (gameover)https://twitter.com/game_over_ports
- * (Earth Image)https://www.youtube.com/watch?v=tJV_XTDtKgM
+ * (earthchan request)https://thekarmaking.deviantart.com/art/Earth-Chan-render-721645939
+ * (win screen) https://wall.alphacoders.com/by_sub_category.php?id=283551&name=Earth-Chan+Wallpapers
  */
 
 public class Engine extends Canvas implements Runnable {
@@ -47,7 +48,7 @@ public class Engine extends Canvas implements Runnable {
 	}
 
 	public Engine(){
-		Engine.infoBox("Incoming transmission from Captain John \n \n We are under attack from the Jeobots! \n Please help us Albert, Johnson, and Gozales! \n\n 		~ Captain John ", "Message From John");
+		//Engine.infoBox("Incoming transmission from Captain John \n \n We are under attack from the Jeobots! \n Please help us Albert, Johnson, and Gozales! \n\n 		~ Captain John ", "Message From John");
 		event = Event.Menu;
 		handler = new Handler();
 		menu = new Menu(this, handler);
@@ -109,7 +110,7 @@ public class Engine extends Canvas implements Runnable {
 				event = Event.Death;
 			}
 		}
-		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death || event == Event.Help2 || event == Event.Win) {
+		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death || event == Event.Help2 || event == Event.Win || event == Event.Request) {
 			menu.tick();
 			handler.tick();
 		}
@@ -189,7 +190,7 @@ public class Engine extends Canvas implements Runnable {
 			handler.render(g);
 
 		} 
-		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death || event == Event.Help2 || event == Event.Win) {
+		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death || event == Event.Help2 || event == Event.Win || event == Event.Request) {
 			menu.render(g);
 		}
 		//Actors

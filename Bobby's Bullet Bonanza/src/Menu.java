@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class Menu extends MouseAdapter{
 	private Color col;
+	private Color blur;
 	private int red = 255;
 	private int blue = 255;
 	private int green = 255;
@@ -21,6 +22,7 @@ public class Menu extends MouseAdapter{
 	private BufferedImage dead = null;
 	private BufferedImage win = null;
 	private BufferedImage anime = null;
+	private BufferedImage request = null;
 	
 	public Menu(Engine engine, Handler handler) {
 		this.engine = engine;
@@ -28,9 +30,8 @@ public class Menu extends MouseAdapter{
 		BufferedImageLoader loader = new BufferedImageLoader();
 		menubackground = loader.loadImage("/background2.jpg");
 		dead = loader.loadImage("/gameover.png");
-		win = loader.loadImage("/earth.jpg");
 		anime = loader.loadImage("/earthchan.png");
-		
+		request = loader.loadImage("/request.png");
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -41,7 +42,7 @@ public class Menu extends MouseAdapter{
 		{
 			//Start Button
 			if(inBounds(mouseX, mouseY, 350, 250, 300, 64 )) {
-				engine.event = Event.CharacterSelection;
+				engine.event = Event.Request;
 			}
 			//Help Button
 			if(inBounds(mouseX, mouseY, 350, 350, 300, 64 )) {
@@ -191,12 +192,14 @@ public class Menu extends MouseAdapter{
 		Font title = new Font("Magneto",Font.BOLD, 60);
 		Font instructions = new Font("Helvetica", 1, 60);
 		Font small = new Font("Helvetica", 1, 25);
+		blur = new Color(0, 0, 0, 190);
 		if(engine.event == Event.Menu) {
 			//Background
-			g.drawImage(menubackground, 0, 0, null);
+			g.drawImage(menubackground, -120, -60, null);
+			g.setColor( new Color(0, 0, 0, 190));
+			g.fillRect(0, 0, Engine.WIDTH, Engine.HEIGHT);
 			//Title
-			g.setColor(col);g.setFont(title);g.drawString("John's Gemometric Jumble", 60, 150);
-
+			g.setColor(col);g.setFont(title);g.drawString("John's Geometric Jumble", 70, 150);
 			g.setFont(font);
 			//Start Box
 			g.drawRect(350, 250, 300, 64);g.drawString("Start", 450, 300);
@@ -209,7 +212,6 @@ public class Menu extends MouseAdapter{
 
 			g.setColor(col);
 			g.setFont(font);
-			//g.drawImage(background, -300, 0, null);
 
 			//Back Button
 			g.drawString("Back", 50, 80);g.drawRect(40, 30, 120, 64);
@@ -249,6 +251,12 @@ public class Menu extends MouseAdapter{
 			g.drawString("Esc", 53, 675);
 			g.drawString("Go back / Pause", 115, 675);
 
+		}
+		if (engine.event == Event.Request) {
+			g.setFont(instructions);
+			g.setColor(Color.white);
+			g.drawImage(request, 600,0, null);
+			g.drawString("INCOMING TRANSMISSION!!!" , 70 , 100);
 		}
 		if (engine.event == Event.CharacterSelection) {
 

@@ -31,7 +31,7 @@ public class FatAlbert extends Ship {
 		if(ability) {
 			uptime++;
 			if(regen < health) regen ++;
-			if(uptime < 2000) {
+			if(uptime < 400) {
 				this.setHealth(regen);
 			} else {
 				uptime = 0;

@@ -3,6 +3,7 @@ public enum Event {
 	
 	Menu,
 	CharacterSelection,
+	Request,
 	Help,
 	Game,
 	Death,
