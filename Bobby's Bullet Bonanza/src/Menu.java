@@ -18,16 +18,19 @@ public class Menu extends MouseAdapter{
 	private Engine engine;
 	private Handler handler;
 	private BufferedImage menubackground = null;
-	private BufferedImage background = null;
 	private BufferedImage dead = null;
-
+	private BufferedImage win = null;
+	private BufferedImage anime = null;
+	
 	public Menu(Engine engine, Handler handler) {
 		this.engine = engine;
 		this.handler = handler;
 		BufferedImageLoader loader = new BufferedImageLoader();
 		menubackground = loader.loadImage("/background2.jpg");
-		background = loader.loadImage("/backgroundsp.jpg");
 		dead = loader.loadImage("/gameover.png");
+		win = loader.loadImage("/earth.jpg");
+		anime = loader.loadImage("/earthchan.png");
+		
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -90,19 +93,19 @@ public class Menu extends MouseAdapter{
 			if(inBounds(mouseX, mouseY, 135, 295, 70, 55)) {
 				engine.event = Event.Game;	
 				handler.addObject(new FatAlbert( Engine.WIDTH/2 , Engine.HEIGHT - 100, 400, ID.Albert));
-				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler));
+				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler, engine));
 			}
 			//S.S. Minnow Johnson
 			if(inBounds(mouseX, mouseY, 450, 295, 70, 55)) {
 				engine.event = Event.Game;	
 				handler.addObject(new SSMinnowJohnson( Engine.WIDTH/2 , Engine.HEIGHT - 100, 300, ID.John));
-				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler));
+				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler, engine));
 			}
 			//Speed Gonzales
 			if(inBounds(mouseX, mouseY, 785, 295, 70, 55)) {
 				engine.event = Event.Game;	
 				handler.addObject(new SpeedyGonzales( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.Gon));
-				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler));
+				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler, engine));
 			}
 		}
 
@@ -244,7 +247,7 @@ public class Menu extends MouseAdapter{
 			//Escape
 			g.drawRect(50, 640, 50, 50);
 			g.drawString("Esc", 53, 675);
-			g.drawString("Go back", 115, 675);
+			g.drawString("Go back / Pause", 115, 675);
 
 		}
 		if (engine.event == Event.CharacterSelection) {
@@ -334,6 +337,15 @@ public class Menu extends MouseAdapter{
 				g.drawImage(dead, x, 350, null);
 				g.drawImage(dead, x, 550, null);
 			}
+		}
+		if(engine.event == Event.Win) {
+		
+			Color pause = new Color(0, 0, 0, 70);
+			g.drawImage(win, -400, -150, null);
+			g.drawImage(anime, 0, 0, null);
+			g.setColor(pause);
+			g.fillRect(0, 0, Engine.WIDTH, Engine.HEIGHT);
+			
 		}
 		if(engine.event == Event.Help2){
 			g.setColor(col);

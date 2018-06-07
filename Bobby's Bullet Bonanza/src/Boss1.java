@@ -5,9 +5,11 @@ import java.awt.Rectangle;
 
 public class Boss1 extends Enemy
 {
-	public Boss1(int x, int y, int h, ID id, Handler handler) {
+	private Engine engine;
+	public Boss1(int x, int y, int h, ID id, Handler handler, Engine engine) {
 		super( x, y, h, id, handler);
 		this.handler = handler;
+		this.engine = engine;
 		health = h;
 		timer = 1700;
 		timer2 = 0;
@@ -29,10 +31,8 @@ public class Boss1 extends Enemy
 		y += speedY;
 		if(this.getHealth() <= 0) 
 		{
-			handler.addObject(new Boss2(500, 20, 3000, ID.Boss, handler));
-			
-				
-			}
+			handler.addObject(new Boss2(500, 20, 3000, ID.Boss, handler, engine));			
+		}
 
 	}
 
@@ -67,11 +67,9 @@ public class Boss1 extends Enemy
 	public void shoot()
 	{
 		if (timer == 1700){
-			for(int i = 0; i< 5; i++)
-			{
+			for(int i = 0; i< 5; i++){
 				Enemy f = new Enemy( (int)(Math.random() * 900), (int) (Math.random() * 250) + 30, 50, ID.Enemy, handler);
 				handler.addObject(f);
-	
 			}
 			timer = 0;
 		}

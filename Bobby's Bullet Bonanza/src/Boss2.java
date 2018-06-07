@@ -3,9 +3,11 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 public class Boss2 extends Boss1 {
 
-	public Boss2(int x, int y, int h, ID id, Handler handler) {
-		super( x, y, h, id, handler);
+	private Engine engine;
+	public Boss2(int x, int y, int h, ID id, Handler handler, Engine engine) {
+		super( x, y, h, id, handler, engine);
 		this.handler = handler;
+		this.engine = engine;
 		health = h;
 		timer = 1500;
 		timer2 = 0;
@@ -29,15 +31,8 @@ public class Boss2 extends Boss1 {
 		y += speedY;
 		if(this.getHealth() <= 0) 
 		{
-			handler.addObject(new Boss3(500, 20, 5000, ID.Boss, handler));
+			handler.addObject(new Boss3(500, 20, 5000, ID.Boss, handler, engine));
 		}
-
-
-
-
-
-
-
 	}
 
 

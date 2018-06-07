@@ -112,6 +112,13 @@ public class KeyUser implements KeyListener{
 			else if(engine.event == Event.Help) {
 				Engine.reset = true;
 				engine.event = Event.Menu;
+			} else if(engine.event == Event.Help2) {
+				engine.event = Event.Help;
+				h.addObject(new SSMinnowJohnson( Engine.WIDTH - 200 , Engine.HEIGHT - 200, 200, ID.John));
+				Enemy enemy = new Enemy(Engine.WIDTH - 200 , 200, 50, ID.Enemy, h);
+				if(!h.checkFor(enemy)) {
+					h.addObject(enemy);
+				}
 			}
 		}
 	}

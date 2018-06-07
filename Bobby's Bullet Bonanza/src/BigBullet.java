@@ -22,7 +22,7 @@ public class BigBullet extends GoodBullet{
 				if (temp.id == ID.Enemy) {
 					int dmg = (this.getHealth() - temp.getHealth());
 					temp.setHealth(temp.getHealth() - this.getHealth());
-					this.setHealth(this.getHealth() - temp.getHealth());
+					this.setHealth(dmg);
 				}
 				if (temp.id == ID.Boss) {
 					temp.setHealth(temp.getHealth() - this.getHealth());

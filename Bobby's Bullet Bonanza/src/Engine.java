@@ -6,7 +6,6 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 
-
 // Game Created by Theodore Nguyen, Wesley Wang, Ethan Phuong, Stephen Shen
 /* Thanks to:
  * Influenced by Youtube Channel RealTutsGML 
@@ -14,6 +13,7 @@ import javax.swing.JOptionPane;
  * (anime)https://www.zerochan.net/1915298
  * (stars)https://www.pond5.com/stock-footage/23768280/simple-star-space-background-effect.html
  * (gameover)https://twitter.com/game_over_ports
+ * (Earth Image)https://www.youtube.com/watch?v=tJV_XTDtKgM
  */
 
 public class Engine extends Canvas implements Runnable {
@@ -30,7 +30,6 @@ public class Engine extends Canvas implements Runnable {
 	public static int timer;
 	public static boolean paused = false;
 	public static boolean reset = false;
-	public static int score;
 	public int highschore;
 	public Event event;
 	//ChangeEvent.Game (to skip the menu (easier debug))
@@ -49,7 +48,6 @@ public class Engine extends Canvas implements Runnable {
 
 	public Engine(){
 		Engine.infoBox("Incoming transmission from Captain John \n \n We are under attack from the Jeobots! \n Please help us Albert, Johnson, and Gozales! \n\n 		~ Captain John ", "Message From John");
-		//("Make Sure to \nCheck the Guide \n\nSincerly Your Captain, \n\nJohn ", "Message From John");
 		event = Event.Menu;
 		handler = new Handler();
 		menu = new Menu(this, handler);
@@ -104,7 +102,6 @@ public class Engine extends Canvas implements Runnable {
 		if (event == Event.Game) {
 			if(handler.checkFor(albert) || handler.checkFor(john) || handler.checkFor(gon)){
 				if (!paused) {
-					score++;
 					handler.tick();
 				}
 			}
@@ -112,7 +109,7 @@ public class Engine extends Canvas implements Runnable {
 				event = Event.Death;
 			}
 		}
-		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death || event == Event.Help2 ) {
+		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death || event == Event.Help2 || event == Event.Win) {
 			menu.tick();
 			handler.tick();
 		}
@@ -126,7 +123,7 @@ public class Engine extends Canvas implements Runnable {
 			return;
 		}	
 		//PAUSE STUFF
-		int alpha = 190; // 50% transparent
+		int alpha = 190; 
 		Color pause = new Color(0, 0, 0, alpha);
 		Font title = new Font("Helvetica", 1, 60);
 		Font small = new Font("Helvetica", 1, 25);
@@ -140,13 +137,8 @@ public class Engine extends Canvas implements Runnable {
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		g.drawImage(background, 0, 0, null);
 		if (event == Event.Game) {
-			//Score
-			g.setColor(Color.white);
-			g.drawString("Score: " + score, 100, 100);
 
 			//icon for shield		
-			
-			
 			g.setColor(Color.WHITE);
 			g.fillRect(916, 640, 66, 66);
 			g.setColor(Color.CYAN);
@@ -154,16 +146,6 @@ public class Engine extends Canvas implements Runnable {
 			g.setColor(Color.WHITE);
 			g.fillRoundRect(927, 650, 44, 44, 44, 44);
 			
-			
-			//g.fillRect(927, 650, 44, 7);
-			//g.setColor(Color.CYAN);
-			//g.fillRect(927, 650, 7, 43);
-			//g.setColor(Color.CYAN);
-			//g.fillRect(927, 688, 44, 7);
-			//g.setColor(Color.CYAN);
-			//g.fillRect(965,650, 7, 45);
-
-
 			//health bar
 			g.setColor(Color.DARK_GRAY);
 			g.fillRect(10, HEIGHT - 60, 400, 30);
@@ -207,7 +189,7 @@ public class Engine extends Canvas implements Runnable {
 			handler.render(g);
 
 		} 
-		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death || event == Event.Help2) {
+		else if (event == Event.Menu || event == Event.Help || event == Event.CharacterSelection || event == Event.Death || event == Event.Help2 || event == Event.Win) {
 			menu.render(g);
 		}
 		//Actors
@@ -257,7 +239,7 @@ public class Engine extends Canvas implements Runnable {
 			g.drawRect(400, 460, 200, 64);
 			g.drawString("Quit", 470, 500);
 			g.setFont(new Font(null, 1, 10));
-			g.drawString("Don't be a wuss", 455, 520);
+			g.drawString("Don't be a chicken", 450, 520);
 		}
 		g.dispose();
 		bs.show();

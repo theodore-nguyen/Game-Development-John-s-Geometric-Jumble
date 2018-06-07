@@ -10,5 +10,5 @@ public enum ID {
 	GoodBullet, 
 	Shield,
 	MedKit,
-	
+	Star
 }
