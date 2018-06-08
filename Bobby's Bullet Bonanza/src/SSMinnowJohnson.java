@@ -38,6 +38,10 @@ public class SSMinnowJohnson extends Ship{
 			}
 
 		}
+		if(this.getHealth() <= 0) {
+			AudioPlayer.getMusic("game").stop();
+			AudioPlayer.getMusic("dead").play();
+		}
 	}
 	public int getTim() 
 	{

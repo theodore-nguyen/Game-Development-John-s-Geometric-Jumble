@@ -57,7 +57,12 @@ public class Kamikaze extends BadBullet{
 
 			if ((int)(Math.random()  * 100) <= 25 ) 
 			{
-				handler.addObject(new MedKit(getX(), getY(), 5, ID.MedKit, handler));
+				if (getY() >= 250)
+					handler.addObject(new MedKit(getX(), getY(), 5, ID.MedKit, handler));
+				else 
+				{
+					handler.addObject(new MedKit(getX(), 250, 5, ID.MedKit, handler));
+				}
 			}
 		}
 	}

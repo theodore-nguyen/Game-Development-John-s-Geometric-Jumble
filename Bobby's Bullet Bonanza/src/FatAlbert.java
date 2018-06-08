@@ -53,6 +53,10 @@ public class FatAlbert extends Ship {
 					ability = false;
 				}
 			}
+			if(this.getHealth() <= 0) {
+				AudioPlayer.getMusic("game").stop();
+				AudioPlayer.getMusic("dead").play();
+			}
 		}
 	}
 	public boolean CanSpecial() 

@@ -40,6 +40,10 @@ public class SpeedyGonzales extends Ship{
 			}
 
 		}
+		if(this.getHealth() <= 0) {
+			AudioPlayer.getMusic("game").stop();
+			AudioPlayer.getMusic("dead").play();
+		}
 	}
 	public int getMax()
 	{

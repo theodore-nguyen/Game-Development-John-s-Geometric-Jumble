@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
  * (anime)https://www.zerochan.net/1915298
  * (stars)https://www.pond5.com/stock-footage/23768280/simple-star-space-background-effect.html
  * (gameover)https://twitter.com/game_over_ports
- * (Game)https://chinchongcha.deviantart.com/art/Earth-chan-724480877
+ * (earth-chan end)https://chinchongcha.deviantart.com/art/Earth-chan-724480877
+ * (earth-chan begging) https://thekarmaking.deviantart.com/art/Earth-Chan-render-721645939 
  */
 
 public class Engine extends Canvas implements Runnable {
@@ -55,12 +56,15 @@ public class Engine extends Canvas implements Runnable {
 		event = Event.Menu;
 		handler = new Handler();
 		menu = new Menu(this, handler);
+
 		new Window(WIDTH, HEIGHT, "John's Geometric Jumble", this);
 		BufferedImageLoader loader = new BufferedImageLoader();
 		background = loader.loadImage("/stars.jpeg");
 		this.requestFocusInWindow();
 		this.addKeyListener( new KeyUser(handler,this) );
 		this.addMouseListener(menu);
+		
+		
 	}
 	public synchronized void start(){ 
 		thread = new Thread(this);
@@ -129,13 +133,12 @@ public class Engine extends Canvas implements Runnable {
 					}
 				}
 				if(victory) {
-	
 					menu.tick();
 					handler.tick();
 					//Remove the rest of enemies
 					for(int i = 0; i < handler.actors.size(); i ++) {
 						Actor temp = handler.actors.get(i);
-						if (temp.id == ID.Enemy || temp.id == ID.BadBullet) {
+						if (temp.id == ID.Enemy || temp.id == ID.BadBullet || temp.id == ID.MedKit) {
 							handler.removeObject(temp);
 						}
 					}	

@@ -7,6 +7,7 @@ public class Boss3 extends Boss1 {
 	private Engine engine;
 	private Color color;
 	public Boss3(int x, int y, int h, ID id, Handler handler, Engine engine) {
+		
 		super( x, y, h, id, handler, engine);
 		this.handler = handler;
 		this.engine = engine;
@@ -28,6 +29,8 @@ public class Boss3 extends Boss1 {
 			this.setHealth(0);
 			handler.removeObject(this);
 			Engine.victory = true;
+			AudioPlayer.getMusic("game").stop();
+			AudioPlayer.getMusic("win").loop();
 		}		
 		
 		x += speedX;

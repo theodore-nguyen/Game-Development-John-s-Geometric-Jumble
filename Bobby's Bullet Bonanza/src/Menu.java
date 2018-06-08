@@ -28,6 +28,8 @@ public class Menu extends MouseAdapter{
 		this.engine = engine;
 		this.handler = handler;
 		BufferedImageLoader loader = new BufferedImageLoader();
+		AudioPlayer.load();
+		AudioPlayer.getMusic("menu").loop();
 		menubackground = loader.loadImage("/background2.jpg");
 		dead = loader.loadImage("/gameover.png");
 		anime = loader.loadImage("/earthchan.png");
@@ -41,7 +43,7 @@ public class Menu extends MouseAdapter{
 		if(engine.event == Event.Menu) 
 		{
 			//Start Button
-			if(inBounds(mouseX, mouseY, 350, 250, 300, 64 )) {
+			if(inBounds(mouseX, mouseY, 350, 250, 300, 64)) {
 				engine.event = Event.Request;
 			}
 			//Help Button
@@ -81,7 +83,6 @@ public class Menu extends MouseAdapter{
 				if(!handler.checkFor(enemy)) {
 					handler.addObject(enemy);
 				}
-
 			}
 		}
 		else if(engine.event == Event.CharacterSelection) {
@@ -93,6 +94,8 @@ public class Menu extends MouseAdapter{
 			}
 			//Fat Albert
 			if(inBounds(mouseX, mouseY, 135, 295, 70, 55)) {
+				AudioPlayer.getMusic("menu").stop();
+				AudioPlayer.getMusic("game").loop();
 				engine.event = Event.Game;	
 				handler.addObject(new FatAlbert( Engine.WIDTH/2 , Engine.HEIGHT - 100, 400, ID.Albert));
 				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler, engine));
@@ -100,13 +103,17 @@ public class Menu extends MouseAdapter{
 			}
 			//S.S. Minnow Johnson
 			if(inBounds(mouseX, mouseY, 450, 295, 70, 55)) {
+				AudioPlayer.getMusic("menu").stop();
+				AudioPlayer.getMusic("game").loop();
 				engine.event = Event.Game;	
 				handler.addObject(new SSMinnowJohnson( Engine.WIDTH/2 , Engine.HEIGHT - 100, 300, ID.John));
-				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler, engine));
+				handler.addObject(new Boss3(500, 20, 1000, ID.Boss, handler, engine));
 				engine.level1 = true;
 			}
 			//Speed Gonzales
 			if(inBounds(mouseX, mouseY, 785, 295, 70, 55)) {
+				AudioPlayer.getMusic("menu").stop();
+				AudioPlayer.getMusic("game").loop();
 				engine.event = Event.Game;	
 				handler.addObject(new SpeedyGonzales( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.Gon));
 				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler, engine));
@@ -126,6 +133,8 @@ public class Menu extends MouseAdapter{
 		}
 		else if(engine.event == Event.Win){
 			if (inBounds(mouseX, mouseY, 425, 525, 120, 64)){
+				AudioPlayer.getMusic("win").stop();
+				AudioPlayer.getMusic("menu").loop();
 				engine.event = Event.Menu;
 			}
 		}
@@ -136,12 +145,16 @@ public class Menu extends MouseAdapter{
 			}
 			//Restart
 			if (inBounds(mouseX, mouseY, 400, 380, 200, 64)) {
+				AudioPlayer.getMusic("game").stop();
+				AudioPlayer.getMusic("menu").loop();
 				Engine.reset = true;
 				Engine.paused = false;
 				engine.event = Event.CharacterSelection;
 			}
 			//Menu
 			if (inBounds(mouseX, mouseY, 400, 460, 200, 64)) {
+				AudioPlayer.getMusic("game").stop();
+				AudioPlayer.getMusic("menu").loop();
 				Engine.reset = true;
 				Engine.paused = false;
 				engine.event = Event.Menu;
@@ -156,13 +169,17 @@ public class Menu extends MouseAdapter{
 			}
 		}
 		else if (engine.event == Event.Death) {
-			//Try Again
+			//Try Again	
 			if (inBounds(mouseX, mouseY, 400, 300, 200, 64)) {
+				AudioPlayer.getMusic("dead").stop();
+				AudioPlayer.getMusic("menu").loop();
 				Engine.reset = true;
 				engine.event = Event.CharacterSelection;
 			}
 			//Menu
 			if (inBounds(mouseX, mouseY, 400, 380, 200, 64)) {
+				AudioPlayer.getMusic("dead").stop();
+				AudioPlayer.getMusic("menu").loop();
 				Engine.reset = true;
 				engine.event = Event.Menu;
 			}
