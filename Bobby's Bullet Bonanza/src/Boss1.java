@@ -37,7 +37,6 @@ public class Boss1 extends Enemy
 			handler.addObject(new Boss2(500, 20, 3000, ID.Boss, handler, engine));	
 			engine.level2 = true;
 		}
-
 	}
 
 	public void render(Graphics g) {
@@ -79,7 +78,7 @@ public class Boss1 extends Enemy
 			timer = 0;
 		}
 	}
-	//There was a bug when using SSMinnowJohnson shooting the big bullet at the boss
+	//There was a bug when using SSMinnowJohnson ability through enemies at the boss with low hp
 	public int colorValue() {
 		
 		if ((this.getHealth()/5 + 55) >= 0) {

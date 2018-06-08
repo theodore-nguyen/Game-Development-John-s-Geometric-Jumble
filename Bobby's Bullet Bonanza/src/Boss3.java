@@ -27,11 +27,7 @@ public class Boss3 extends Boss1 {
 		if (this.getHealth() <= 0){
 			this.setHealth(0);
 			handler.removeObject(this);
-			Engine.infoBox("Congratulations, Space Warrior \n\nFor your Herioic Deeds, Immense Strength and Fortitude, and your 'Sexy' smile. \nI, Lieutenant Extraterrestrial Liason John,"
-					+ " have granted you the title of 'Space Chief Sergeant'\n\nSincerly\n\nYour Friend, John", "INCOMING TRANSMISSION!");
-
-			engine.event = Event.Win;
-			Engine.reset = true;
+			Engine.victory = true;
 		}		
 		
 		x += speedX;

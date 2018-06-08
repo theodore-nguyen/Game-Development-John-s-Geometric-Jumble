@@ -119,11 +119,10 @@ public class Menu extends MouseAdapter{
 				Engine.reset = true;
 				engine.event = Event.CharacterSelection;
 			}
-			if(inBounds(mouseX, mouseY, 580, 600, 120, 64))
-					{
+			if(inBounds(mouseX, mouseY, 580, 600, 120, 64)){
 				Engine.reset = true;
 				engine.event = Event.Menu;
-					}
+			}
 		}
 		else if(engine.event == Event.Win){
 			if (inBounds(mouseX, mouseY, 425, 525, 120, 64)){
@@ -147,6 +146,14 @@ public class Menu extends MouseAdapter{
 				Engine.paused = false;
 				engine.event = Event.Menu;
 			}	
+		}
+		else if (Engine.victory) {
+			//Next
+			if (inBounds(mouseX, mouseY, 830, 30, 120, 64)) {
+				engine.event = Event.Win;
+				Engine.reset = true;
+				Engine.victory = false;
+			}
 		}
 		else if (engine.event == Event.Death) {
 			//Try Again

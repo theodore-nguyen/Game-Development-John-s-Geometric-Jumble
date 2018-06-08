@@ -30,6 +30,7 @@ public class Engine extends Canvas implements Runnable {
 	public static int timer;
 	private int alpha1 = 0;
 	public static boolean paused = false;
+	public static boolean victory = false;
 	public static boolean reset = false;
 	public static boolean level1;
 	public static boolean level2;
@@ -127,6 +128,22 @@ public class Engine extends Canvas implements Runnable {
 						alpha1 = 0;
 					}
 				}
+				if(victory) {
+	
+					menu.tick();
+					handler.tick();
+					//Remove the rest of enemies
+					for(int i = 0; i < handler.actors.size(); i ++) {
+						Actor temp = handler.actors.get(i);
+						if (temp.id == ID.Enemy || temp.id == ID.BadBullet) {
+							handler.removeObject(temp);
+						}
+					}	
+					alpha1++;
+					if(alpha1 >= 255) {
+						alpha1 = 255;
+					}
+				}
 			}
 			else {
 				event = Event.Death;
@@ -150,7 +167,7 @@ public class Engine extends Canvas implements Runnable {
 		Color pause = new Color(0, 0, 0, alpha);
 		Font title = new Font("Helvetica", 1, 60);
 		Font small = new Font("Helvetica", 1, 25);
-
+		Font font = new Font(null, 1, 42);
 		Graphics g = bs.getDrawGraphics();
 		Font health = new Font("Magneto",Font.BOLD, 20);
 		Font norm = new Font("Times New Roman" , 1, 12);
@@ -306,6 +323,24 @@ public class Engine extends Canvas implements Runnable {
 
 			g.drawRect(400, 460, 200, 64);
 			g.drawString("Menu", 465, 500);
+		}
+		if(victory) {
+			g.setFont(font);
+			g.setColor(Color.white);
+			g.drawRect(830, 30, 120, 64);
+			g.drawString("Next", 845, 80);
+			
+			g.setColor(new Color(255, 255, 0, alpha1));
+			g.setFont(title);
+			g.drawString("MISSION SUCCESS!!!", 200, 200);	
+			g.setFont(new Font(null,1, 20));;
+			g.drawString("Congratulations, Space Warrior", 150,270);
+			g.drawString("For your Heroic Deeds, Immense Strength and Fortitude, and your 'Sexy'", 150, 330);
+			g.drawString("Smile. I, Lieutenant Extraterrestrial Liason John, have granted you the", 150, 360);
+			g.drawString("the title of 'Space Chief Sergeant'.", 150, 390);
+			g.drawString("Sincerly,", 150, 450);
+			g.drawString("Your Friend, John", 150, 480);
+			
 		}
 		if(level1){
 			g.setColor(new Color(255,255,255, alpha1));
