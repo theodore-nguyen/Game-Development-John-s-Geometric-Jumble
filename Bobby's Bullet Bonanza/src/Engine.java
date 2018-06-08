@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * (anime)https://www.zerochan.net/1915298
  * (stars)https://www.pond5.com/stock-footage/23768280/simple-star-space-background-effect.html
  * (gameover)https://twitter.com/game_over_ports
- * (Earth Image)https://www.youtube.com/watch?v=tJV_XTDtKgM
+ * (Game)https://chinchongcha.deviantart.com/art/Earth-chan-724480877
  */
 
 public class Engine extends Canvas implements Runnable {
@@ -28,8 +28,12 @@ public class Engine extends Canvas implements Runnable {
 	private Handler handler;
 
 	public static int timer;
+	private int alpha1 = 0;
 	public static boolean paused = false;
 	public static boolean reset = false;
+	public static boolean level1;
+	public static boolean level2;
+	public static boolean level3;
 	public int highschore;
 	public Event event;
 	//ChangeEvent.Game (to skip the menu (easier debug))
@@ -40,20 +44,19 @@ public class Engine extends Canvas implements Runnable {
 	private SpeedyGonzales gon = new SpeedyGonzales(0,0,0, ID.Gon);
 
 
-
 	public static void infoBox(String infoMessage, String titleBar)
 	{
 		JOptionPane.showMessageDialog(null, infoMessage, "" + titleBar, JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public Engine(){
+		infoBox("\"HELPPPP!!!!!\" \n-Unknown", "INCOMING TRANSMISSION!");
 		event = Event.Menu;
 		handler = new Handler();
 		menu = new Menu(this, handler);
 		new Window(WIDTH, HEIGHT, "John's Geometric Jumble", this);
 		BufferedImageLoader loader = new BufferedImageLoader();
 		background = loader.loadImage("/stars.jpeg");
-
 		this.requestFocusInWindow();
 		this.addKeyListener( new KeyUser(handler,this) );
 		this.addMouseListener(menu);
@@ -102,6 +105,27 @@ public class Engine extends Canvas implements Runnable {
 			if(handler.checkFor(albert) || handler.checkFor(john) || handler.checkFor(gon)){
 				if (!paused) {
 					handler.tick();
+				}
+				if(level1){
+					alpha1++;
+					if(alpha1 == 255){
+						level1 = false;
+						alpha1 = 0;
+					}
+				}
+				if(level2){
+					alpha1++;
+					if(alpha1 == 255){
+						level2 = false;
+						alpha1 = 0;
+					}
+				}
+				if(level3){
+					alpha1++;
+					if(alpha1 == 255){
+						level3 = false;
+						alpha1 = 0;
+					}
 				}
 			}
 			else {
@@ -157,11 +181,15 @@ public class Engine extends Canvas implements Runnable {
 				if (temp.id == ID.John || temp.id == ID.Albert || temp.id == ID.Gon){
 
 					if(temp.id == ID.Gon){
-						g.setColor(Color.green);
+						Color hpbar = new Color(255 - (temp.getHealth() + 55),temp.getHealth() ,0);
+						g.setColor(hpbar);
 						g.fillRect(10, HEIGHT - 60, temp.getHealth() * 2, 30);
 						g.setFont(health);
 						g.setColor(Color.LIGHT_GRAY);
 						g.drawString("Health: " + temp.getHealth(), 10, HEIGHT - 60);
+						g.setFont(norm);
+						g.drawString("Space Warrior: Speedy Gonzales", 160, HEIGHT - 60);
+
 						//icon for special
 						g.setColor(Color.WHITE);
 						g.fillRect(832, 640, 66, 66);
@@ -187,11 +215,15 @@ public class Engine extends Canvas implements Runnable {
 
 					}
 					if(temp.id == ID.John){
-						g.setColor(Color.green);
+						
+						Color hpbar = new Color(255 - temp.colorValue(), temp.colorValue() ,0);
+						g.setColor(hpbar);
 						g.fillRect(10, HEIGHT - 60, temp.getHealth()/3 * 4, 30);
 						g.setFont(health);
 						g.setColor(Color.LIGHT_GRAY);
 						g.drawString("Health: " + temp.getHealth(), 10, HEIGHT - 60);
+						g.setFont(norm);
+						g.drawString("Space Warrior: S.S. Minnow Johnson", 160, HEIGHT - 60);
 
 						g.setColor(Color.white);
 						g.fillRect(832, 640, 66, 66);
@@ -210,11 +242,14 @@ public class Engine extends Canvas implements Runnable {
 
 					}
 					if(temp.id == ID.Albert){
-						g.setColor(Color.green);
+						Color hpbar = new Color(255 - ((temp.getHealth() /2) + 55), (temp.getHealth()/2),0);
+						g.setColor(hpbar);
 						g.fillRect(10, HEIGHT - 60, temp.getHealth(), 30);
 						g.setFont(health);
 						g.setColor(Color.LIGHT_GRAY);
 						g.drawString("Health: " + temp.getHealth(), 10, HEIGHT - 60);
+						g.setFont(norm);
+						g.drawString("Space Warrior: Fat Albert", 160, HEIGHT - 60);
 
 						g.setColor(Color.white);
 						g.fillRect(832, 640, 66, 66);
@@ -240,7 +275,6 @@ public class Engine extends Canvas implements Runnable {
 				}
 
 			}
-
 			g.setColor(Color.gray);
 			g.drawRect(10, HEIGHT - 60, 400, 30);
 			handler.render(g);
@@ -273,6 +307,21 @@ public class Engine extends Canvas implements Runnable {
 			g.drawRect(400, 460, 200, 64);
 			g.drawString("Menu", 465, 500);
 		}
+		if(level1){
+			g.setColor(new Color(255,255,255, alpha1));
+			g.setFont(title);
+			g.drawString("Wave 1", 400, 200);
+		}
+		if(level2){
+			g.setColor(new Color(255,255,255, alpha1));
+			g.setFont(title);
+			g.drawString("Wave 2", 400, 200);
+		}
+		if(level3){
+			g.setColor(new Color(255,255,255, alpha1));
+			g.setFont(title);
+			g.drawString("Final Boss", 390, 200);
+		}
 		if(event == Event.Death) {
 			g.setColor(Color.white);
 			for(int i = 0; i < 20; i ++) {
@@ -302,7 +351,6 @@ public class Engine extends Canvas implements Runnable {
 			g.drawString("Quit", 470, 500);
 			g.setFont(new Font(null, 1, 10));
 			g.drawString("Are you going to give up on the world?", 407, 520);
-
 
 		}
 		g.dispose();

@@ -85,6 +85,7 @@ public class Menu extends MouseAdapter{
 			}
 		}
 		else if(engine.event == Event.CharacterSelection) {
+			
 			//BackButton
 			if(inBounds(mouseX, mouseY, 40, 30, 120, 64)) {
 				Engine.reset = true;
@@ -95,18 +96,21 @@ public class Menu extends MouseAdapter{
 				engine.event = Event.Game;	
 				handler.addObject(new FatAlbert( Engine.WIDTH/2 , Engine.HEIGHT - 100, 400, ID.Albert));
 				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler, engine));
+				engine.level1 = true;
 			}
 			//S.S. Minnow Johnson
 			if(inBounds(mouseX, mouseY, 450, 295, 70, 55)) {
 				engine.event = Event.Game;	
 				handler.addObject(new SSMinnowJohnson( Engine.WIDTH/2 , Engine.HEIGHT - 100, 300, ID.John));
 				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler, engine));
+				engine.level1 = true;
 			}
 			//Speed Gonzales
 			if(inBounds(mouseX, mouseY, 785, 295, 70, 55)) {
 				engine.event = Event.Game;	
 				handler.addObject(new SpeedyGonzales( Engine.WIDTH/2 , Engine.HEIGHT - 100, 200, ID.Gon));
 				handler.addObject(new Boss1(500, 20, 1000, ID.Boss, handler, engine));
+				engine.level1 = true;
 			}
 		}
 		else if (engine.event == Event.Request)
@@ -120,6 +124,11 @@ public class Menu extends MouseAdapter{
 				Engine.reset = true;
 				engine.event = Event.Menu;
 					}
+		}
+		else if(engine.event == Event.Win){
+			if (inBounds(mouseX, mouseY, 425, 525, 120, 64)){
+				engine.event = Event.Menu;
+			}
 		}
 		else if (Engine.paused){
 			//Resume
@@ -208,7 +217,7 @@ public void render(Graphics g) {
 	if(engine.event == Event.Menu) {
 		//Background
 		g.drawImage(menubackground, -120, -60, null);
-		g.setColor( new Color(0, 0, 0, 190));
+		g.setColor( new Color(0, 0, 0, 100));
 		g.fillRect(0, 0, Engine.WIDTH, Engine.HEIGHT);
 		//Title
 		g.setColor(col);g.setFont(title);g.drawString("John's Geometric Jumble", 70, 150);
@@ -266,12 +275,15 @@ public void render(Graphics g) {
 	}
 	if (engine.event == Event.Request) {
 		g.setFont(instructions);
+		g.drawImage(request, 600,200, null);
+		g.setColor(blur);
+		g.fillRect(0,0,Engine.WIDTH, Engine.HEIGHT);
 		g.setColor(col);
-		g.drawImage(request, 600,0, null);
 		g.drawString("INCOMING TRANSMISSION!!!" , 70 , 80);
 		//Lieutenant
 		g.setColor(Color.yellow);
 		g.setFont(descrFont);
+		g.drawRect(60, 110, 480, 120);
 		g.drawString("We are under attack from the Jeobots and we need your help!", 70, 130);
 		g.drawString("Please help us Mr. Albert, Mr. Johnson, and Mr. Gonzales,", 70, 160);
 		g.drawString("so that we can save the universe!", 70, 190);
@@ -284,6 +296,7 @@ public void render(Graphics g) {
 		g.drawString("Mr. Johnson, and Mr. Gonzales!", 70, 380);
 		g.drawString("Save me! Save me or", 70, 420);
 		g.drawString("P E R I S H", 70, 460);
+		g.drawString("-Lovingly, Earth-chan", 72, 500);
 		//Yes
 		g.setColor(col);
 		g.setFont(font);
@@ -389,13 +402,25 @@ public void render(Graphics g) {
 		}
 	}
 	if(engine.event == Event.Win) {
-
-		Color pause = new Color(0, 0, 0, 70);
+		Color pause = new Color(0, 0, 0, 140);
 		g.drawImage(win, -400, -150, null);
 		g.drawImage(anime, 0, 0, null);
 		g.setColor(pause);
 		g.fillRect(0, 0, Engine.WIDTH, Engine.HEIGHT);
-
+		g.setColor(col);
+		g.setFont(font);
+		g.drawString("YOU'VE DONE IT!", 330, 150);
+		g.setColor(Color.WHITE);
+		g.drawString("THANK YOU SPACE WARRIOR", 180, 250);
+		g.setFont(descrFont);
+		g.drawString("You've saved me from the hands of the notorius Jeoborgs.", 260, 400);
+		g.drawString("I can’t believe you did it with such power and I don’t know how I’ll ever repay you for protecting the universe.", 75, 425);
+		g.drawString("You’ve shown your immense strength and courage and as a reward I’ll love you forever and ever.", 115, 450);
+		g.drawString("Thank you once again for restoring peace to the universe!!!!", 255, 475);
+		g.setColor(col);
+		g.setFont(font);
+		g.drawString("Menu", 430, 570);
+		g.drawRect(425, 525, 120, 64);
 	}
 	if(engine.event == Event.Help2){
 		g.setColor(col);
@@ -419,7 +444,7 @@ public void render(Graphics g) {
 		g.fillRect(40 + 15, 130 + 40, 40, 10);
 		g.setColor(Color.white);
 		g.setFont(descrFont);
-		g.drawString("The basic enemy. Its bullets deal 5 health.", 110, 155);
+		g.drawString("The basic enemy. Its bullets deal 10 health.", 110, 155);
 		g.drawString("Each enemy has 50 health.", 110, 175);
 		//kamikaze description
 		g.setColor(Color.green);
@@ -435,7 +460,7 @@ public void render(Graphics g) {
 		g.setColor(Color.white);
 		g.setFont(descrFont);
 		g.drawString("An advanced enemy. Homes on your position.", 110, 250);
-		g.drawString("The kamikaze has 50 health. It deals 20 health.", 110, 270);
+		g.drawString("The kamikaze has 50 health. It deals 40 health.", 110, 270);
 		//Boss1 description
 		g.setColor(Color.MAGENTA);
 		g.fillRect(40, 310 , 100, 100);
@@ -465,7 +490,7 @@ public void render(Graphics g) {
 		g.fillRect(40 + 15, 430 + 60, 60, 10);
 		g.setColor(Color.white);
 		g.setFont(descrFont);
-		g.drawString("An advanced boss. It has 2000 health.", 150, 460);
+		g.drawString("An advanced boss. It has 3000 health.", 150, 460);
 		g.drawString("Upon death, it spawns a Boss 3.", 150, 480);
 		g.drawString("It spawns enemies and kamikazes.", 150, 500); 
 		//Boss3 description
@@ -481,7 +506,7 @@ public void render(Graphics g) {
 		g.fillRect(40 + 15, 550 + 60, 60, 10);
 		g.setColor(Color.white);
 		g.setFont(descrFont);
-		g.drawString("An ultra-advanced boss. It has 3000 health.", 150, 580);
+		g.drawString("An ultra-advanced boss. It has 5000 health.", 150, 580);
 		g.drawString("Upon death, all the geobots will retreat.", 150, 600);
 		g.drawString("It spawns enemies and kamikazes and turrets.", 150, 620); 
 		//Turret description
@@ -500,7 +525,7 @@ public void render(Graphics g) {
 		g.setColor(Color.white);
 		g.setFont(descrFont);
 		g.drawString("A sentry positioned by Boss 3.", 600, 155);
-		g.drawString("Shoots from behind you and deals 5 health.", 600, 175);
+		g.drawString("Shoots from behind you and deals 10 health.", 600, 175);
 		//Medkit description
 		g.setColor(Color.white);
 		g.fillRect(550, 220, 40, 40);
@@ -513,7 +538,7 @@ public void render(Graphics g) {
 		g.setColor(Color.white);
 		g.setFont(descrFont);
 		g.drawString("1 in 4 chance to spawn from kamikazes.", 600, 235);
-		g.drawString("Move over it to heal 10 health", 600, 255);
+		g.drawString("Move over it to heal 25 health", 600, 255);
 
 	}
 }

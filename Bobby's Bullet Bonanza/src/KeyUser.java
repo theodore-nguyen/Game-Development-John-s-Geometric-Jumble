@@ -119,7 +119,7 @@ public class KeyUser implements KeyListener{
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) 
 					if(temp.canShield())
 					{
-						h.addObject(new Shield(0, 0, 15, ID.Shield, h));
+						h.addObject(new Shield(0, 0, 20, ID.Shield, h));
 						temp.setShield(false);
 					}				
 			}

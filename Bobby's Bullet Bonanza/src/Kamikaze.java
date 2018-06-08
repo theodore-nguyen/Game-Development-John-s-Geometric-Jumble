@@ -46,7 +46,7 @@ public class Kamikaze extends BadBullet{
 			if(temp.id == ID.GoodBullet || temp.id == ID.John || temp.id == ID.Albert || temp.id == ID.Gon) {
 				if (getBounds().intersects(temp.getBounds())) {
 
-					temp.setHealth(temp.getHealth() - 30);
+					temp.setHealth(temp.getHealth() - 40);
 					if(temp.id == ID.John || temp.id == ID.Albert || temp.id == ID.Gon)
 						handler.removeObject(this);
 				}

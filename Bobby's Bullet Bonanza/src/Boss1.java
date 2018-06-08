@@ -6,6 +6,8 @@ import java.awt.Rectangle;
 public class Boss1 extends Enemy
 {
 	private Engine engine;
+	private Color color;
+	private int num;
 	public Boss1(int x, int y, int h, ID id, Handler handler, Engine engine) {
 		super( x, y, h, id, handler);
 		this.handler = handler;
@@ -31,7 +33,9 @@ public class Boss1 extends Enemy
 		y += speedY;
 		if(this.getHealth() <= 0) 
 		{
-			handler.addObject(new Boss2(500, 20, 3000, ID.Boss, handler, engine));			
+			this.setHealth(0);
+			handler.addObject(new Boss2(500, 20, 3000, ID.Boss, handler, engine));	
+			engine.level2 = true;
 		}
 
 	}
@@ -49,7 +53,8 @@ public class Boss1 extends Enemy
 		g.setColor(Color.BLACK);
 		g.fillRect(x + 15, y + 60, 60, 10);
 		
-		g.setColor(Color.GREEN);
+		color = new Color( 255 - this.colorValue(), this.colorValue() , 0);
+		g.setColor(color);
 		g.fillRect(0 , 0 ,(this.getHealth()) , 10);
 		
 		g.setColor(Color.GRAY);
@@ -73,6 +78,16 @@ public class Boss1 extends Enemy
 			}
 			timer = 0;
 		}
+	}
+	//There was a bug when using SSMinnowJohnson shooting the big bullet at the boss
+	public int colorValue() {
+		
+		if ((this.getHealth()/5 + 55) >= 0) {
+			return (this.getHealth()/5 + 55);
+		}
+		else 
+			return 55;
+		
 	}
 }
 

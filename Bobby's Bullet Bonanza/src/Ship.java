@@ -8,6 +8,7 @@ public class Ship extends Actor {
 	protected int maxHealth;
 	public boolean Special;
 	public int timtoo;
+	private int diff;
 	public Ship(int x, int y, int h, ID id) {
 		super(x, y, h, id);
 	}
@@ -64,6 +65,10 @@ public class Ship extends Actor {
 	public int getTimtoo() 
 	{
 		return timtoo;
+	}
+	@Override
+	public int colorValue() {
+		return 0;
 	}
 
 }

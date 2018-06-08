@@ -53,9 +53,6 @@ public class FatAlbert extends Ship {
 					ability = false;
 				}
 			}
-
-
-
 		}
 	}
 	public boolean CanSpecial() 
@@ -113,8 +110,6 @@ public class FatAlbert extends Ship {
 		//shooter right
 		g.setColor(Color.green);
 		g.fillRect(x + 30, y - 5, 10, 5);
-
 	}
-
 
 }

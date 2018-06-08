@@ -98,4 +98,10 @@ public class SSMinnowJohnson extends Ship{
 		g.fillRect(x + 10, y + 10, 20, 20);
 
 	}
+	public int colorValue() {
+		if ((this.getHealth() - 45) >= 0) {
+			return this.getHealth() - 45;
+		}
+		return 0;
+	}
 }

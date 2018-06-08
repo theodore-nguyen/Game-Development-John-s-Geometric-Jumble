@@ -16,7 +16,6 @@ public class BufferedImageLoader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		return image;
 	}
 

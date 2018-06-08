@@ -99,4 +99,5 @@ public class SpeedyGonzales extends Ship{
 		g.setColor(Color.CYAN);
 		g.fillRect(x + 10, y + 10, 20, 20);
 	}
+	
 }

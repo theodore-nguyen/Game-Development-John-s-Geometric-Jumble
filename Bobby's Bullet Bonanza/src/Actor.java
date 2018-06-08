@@ -65,4 +65,5 @@ public abstract class Actor {
 	public abstract boolean CanSpecial(); 
 	public abstract void setSpecial(boolean S); 
 	public abstract int getTimtoo();
+	public abstract int colorValue();
 }

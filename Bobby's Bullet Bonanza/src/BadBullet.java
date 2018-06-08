@@ -20,7 +20,7 @@ public class BadBullet extends Ship{
 			if(temp.id == ID.GoodBullet || temp.id == ID.John || temp.id == ID.Albert || temp.id == ID.Gon || temp.id == ID.Shield) {
 				if (getBounds().intersects(temp.getBounds())) {
 				
-					temp.setHealth(temp.getHealth() - 5);
+					temp.setHealth(temp.getHealth() - 10);
 					handler.removeObject(this);
 				}
 			}
